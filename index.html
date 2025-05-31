@@ -62,7 +62,7 @@
     <script src="./js/tle.js/dist/tlejs.umd.js"></script>
 
     <script type="module">
-        import { getLatLngObj } from "./js/tle.js/dist/tlejs.umd.js";
+//        import { getLatLngObj } from "./js/tle.js/dist/tlejs.umd.js";
     </script>
 
 
@@ -495,8 +495,8 @@ console.log('Current TLE = ' + current_tle)
 //const optionalTimestampMS = 1502342329860;
 //const latLonObj = getLatLngObj(current_tle, optionalTimestampMS);
 
-//const latLonObj = getLatLngObj(current_tle);
-
+const latLonObj = getLatLngObj(current_tle);
+console.log('latLonObj = ' + latLonObj);
 
 
 ////console.log(tles_dict['9']['line_2']);
