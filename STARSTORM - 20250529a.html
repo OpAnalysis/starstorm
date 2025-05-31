@@ -1,0 +1,617 @@
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <!-- Add page title and favicon -->
+    <title>GPS Satellite Locations</title>
+    <link rel="icon" type="image/x-icon" href="./ico/satellite.png">
+
+    <!-- Load Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+
+    <!-- Load Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Load Google icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=satellite_alt" />
+
+    <!-- Load leaflet.Control.FullScreen -->
+    <link rel="stylesheet" href="./js/Control.FullScreen.css" />
+    <script src="./js/Control.FullScreen.js"></script>
+
+    <!-- Load Leaflet.ResetView -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@drustack/leaflet.resetview/dist/L.Control.ResetView.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@drustack/leaflet.resetview/dist/L.Control.ResetView.min.js"></script>
+
+    <!-- Load leaflet-textpath -->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-textpath@1.2.3/leaflet.textpath.min.js"></script>
+ 
+    <!-- Load Plotly -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+    <!-- Import font -->
+    <link href="https://fonts.cdnfonts.com/css/cloud-2" rel="stylesheet">
+
+    <!-- Load MQTT.js client -->
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+
+    <!-- Import CSS for divs -->
+    <link rel="stylesheet" href="./css/divs.css">
+
+
+
+    <!-- Import satellite.js -->
+<!--  <script src='https://cdnjs.cloudflare.com/ajax/libs/satellite.js/5.0.0/satellite.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/satellite@6.0.0/dist/satellite.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/satellite@6.0.0/src/core.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/gh/jquery/satellite@6.0.0/src/core.min.js"></script> -->
+
+
+
+    <!-- Import tle.js  
+    <script src='https://cdn.jsdelivr.net/npm/tle@5.0.1/src/core.min.js'></script>  -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/tle.js@5.0.1/src/index.min.js"></script>  -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/tle.js@5.0.1/tle.min.js"></script>  -->
+    <!-- <script src="https://unpkg.com/tle.js@5.0.1/tle.min.js"></script> -->
+ <!--    <script type="module" src="./tle.js/dist/tlejs.umd.js"></script> -->
+
+
+    <script type="module">
+        import { getLatLngObj } from "./tle.js/src";
+    </script>
+
+
+    <script>
+        vh_in_px = document.documentElement.clientHeight * 0.01;
+    </script>
+
+
+</head>
+<body style="background-color:black">
+
+    <!-- Define divs using Bootstrap 12-column grid-->
+    <div class="satelliteCanvas">  <!-- Container for moving satellite -->
+        <canvas id="satCanvas" class="satCanvas"></canvas>
+        <div id="satelliteDiv" class="satelliteDiv">
+            <img class=" satelliteImage" src='./ico/satellite_image.png' height="36" width="36">
+        </div>
+    </div>
+ 
+    <div class="container-fluid">  <!-- Container for rows -->
+        <div class="row">  <!-- Title row -->
+            <div id='topPanel' class="topPanel"> <!-- Top panel row -->
+            </div>
+        </div>
+        <div class="row">  <!-- Sensor data row -->
+            <div id='leftPanel' class='leftPanel d-flex align-items-center justify-content-center'></div>  <!-- Left panel div -->
+            <div id='skyPlot' class='skyPlot d-flex align-items-center justify-content-center'></div>  <!-- Azimuth vs. elevation sky map div -->
+            <div id='map2D' class='map2D d-flex align-items-center justify-content-center'></div>    <!-- 2D Mercator map div -->
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        // Create satellite-specific dictionaries
+        const satellite_names = {
+            '1': 'NAVSTAR 83 / USA 440',
+            '2': 'NAVSTAR 56 / USA 180',
+            '3': 'NAVSTAR 72 / USA 258',
+            '4': 'NAVSTAR 77 / USA 289',
+            '5': 'NAVSTAR 64 / USA 206',
+            '6': 'NAVSTAR 70 / USA 251',
+            '7': 'NAVSTAR 62 / USA 201',
+            '8': 'NAVSTAR 74 / USA 262',
+            '9': 'NAVSTAR 71 / USA 256',
+            '10': 'NAVSTAR 75 / USA 265',
+            '11': 'NAVSTAR 81 / USA 319',
+            '12': 'NAVSTAR 59 / USA 192',
+            '13': 'NAVSTAR 43 / USA 132',
+            '14': 'NAVSTAR 80 / USA 309',
+            '15': 'NAVSTAR 60 / USA 196',
+            '16': 'NAVSTAR 51 / USA 166',
+            '17': 'NAVSTAR 57 / USA 183',
+            '18': 'NAVSTAR 78 / USA 293',
+            '19': 'NAVSTAR 54 / USA 177',
+            '20': 'NAVSTAR 47 / USA 150',
+            '21': 'UNKNOWN',
+            '22': 'NAVSTAR 48 / USA 151',
+            '23': 'NAVSTAR 79 / USA 304',
+            '24': 'NAVSTAR 67 / USA 239',
+            '25': 'NAVSTAR 65 / USA 213',
+            '26': 'NAVSTAR 73 / USA 260',
+            '27': 'NAVSTAR 68 / USA 242',
+            '28': 'NAVSTAR 82 / USA 343',
+            '29': 'NAVSTAR 61 / USA 199',
+            '30': 'NAVSTAR 69 / USA 248',
+            '31': 'NAVSTAR 58 / USA 190',
+            '32': 'NAVSTAR 76 / USA 266'
+        }
+        function populateDiv(divId, content) {
+            const divElement = document.getElementById(divId);
+            divElement.innerHTML = content;
+        }       
+
+
+
+        async function getTLE(url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const text = await response.text();
+                return text;
+            } catch (error) {
+                console.error("Could not fetch TLE data:", error);
+                return null;
+            }
+        }
+
+        function parseTLE(tleText) {
+            const lines = tleText.split('\n');
+            const tles = [];
+    
+            for (let i = 0; i < lines.length - 2; i += 3) {
+                const name = lines[i].trim();
+                const line1 = lines[i + 1].trim();
+                const line2 = lines[i + 2].trim();
+    
+                if (name && line1 && line2) {
+                    tles.push({ name, line1, line2 });
+                }
+            }
+            return tles;
+        }
+
+//        var tle_url = 'https://celestrak.org/NORAD/elements/gp.php?GROUP=gps-ops&FORMAT=TLE';
+
+//        var gps_sat_tles = getTLE(tle_url);
+//        parsed_tles = parseTLE(gps_sat_tles);
+
+//console.log('parsed_tles = ' + parsed_tles);
+
+        //----------------------------------------------------------------
+        //                      Satellite canvas
+        //----------------------------------------------------------------
+
+        //    var satelliteDivOffsetHeight = document.getElementById("satelliteDiv").offsetHeight;
+    
+        //    function plotSine(ctx) {
+        //        var width = ctx.canvas.width;
+        //        var height = ctx.canvas.height;
+        //        var scale = 20;
+
+        //        ctx.beginPath();
+        //        ctx.lineWidth = 2;
+        //        ctx.strokeStyle = "#262626";
+    
+        //        var x = 0;
+        //        var y = 0;
+        //        var amplitude = 0.5 * height - 18;
+        //        var periods = 2;
+        //        //ctx.moveTo(x, y);
+        //        while (x < width) {
+        //            y = -1*amplitude * Math.cos( 2 * Math.PI * periods * x / width) + 0.5*height;
+        //            ctx.lineTo(x, y);
+        //            x = x + 1;
+        //        }
+        //        ctx.stroke();
+        //    }
+
+        //    var canvasElement = document.getElementById("satCanvas");
+        //    var ctx = canvasElement.getContext("2d");
+        //    var satelliteDivOffsetHeight = document.getElementById("satelliteDiv").offsetHeight;
+        //    ctx.canvas.height = satelliteDivOffsetHeight;
+        //    ctx.canvas.width = window.innerWidth;
+        //    plotSine(ctx);
+
+
+        //----------------------------------------------------------------
+        //                      Top panel
+        //----------------------------------------------------------------
+
+//        const animatedImage = document.getElementById("satelliteImage")
+//        let position = 0;
+
+//        setInterval(() => {
+//            position += 100;
+//            animatedImage.style.left = position + "px"; // Move the image to the right
+//        }, 50); // Update position every 50 milliseconds
+
+            var topDivContent = 
+                '<p><strong>STARSTORM</strong><br><span style="font-size:24px">Sensor Technology Accessed Remotely for Satellite Tracking Online via Real-time Mapping</p></span>'
+            ;
+            populateDiv('topPanel', topDivContent);
+
+
+        //----------------------------------------------------------------
+        //                      Left panel
+        //----------------------------------------------------------------
+
+
+
+        //----------------------------------------------------------------
+        //                      2D Mercator map
+        //----------------------------------------------------------------
+
+        // Specify coordinates at centre of 2D map
+        const mapCentre = [45.42452817421958, -75.70070475902422];  // Parliament Hill
+        const initialZoom = 1.9 
+
+        // Initialize the 2D map on the "map2D" div
+        var map2D = L.map('map2D', {
+            center: mapCentre, // Parliament Hill
+            zoomSnap: 0.1,
+            minZoom: initialZoom,
+            zoom: initialZoom,
+            fullscreenControl: true,                            // Add fullscreen control
+            fullscreenControlOptions: { position: 'topleft' },  // Configure fullscreen control
+        });
+
+        // Add control to reset 2D map view
+        L.control.resetView({
+            position: "topleft",
+            title: "Reset view",
+            latlng: L.latLng(mapCentre),
+            zoom: initialZoom,
+        }).addTo(map2D);
+
+        // Add observer to invalidate the size of the unrendered 2D map whenever its size changes
+        const resizeObserver = new ResizeObserver(entries => {
+        // This will be called upon every element resize
+            for (let entry of entries) {
+                if (entry.target.id === "map2D") {
+                    map2D.invalidateSize();
+                }
+            }   
+        });
+        resizeObserver.observe(document.getElementById("map2D"));
+
+        // Add basemap to 2D map
+            // Carto Dark Matter (retina)
+            L.tileLayer('http://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png', {
+            	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            }).addTo(map2D);
+
+//        //Get projected coordinates of 2D map's centre
+//        var projCoordMapCentre = map2D.options.crs.project(L.latLng(mapCentre));
+
+        // Add layers to 2D map
+        var satelliteMarkerGroup = L.layerGroup().addTo(map2D);  // Layer group for satellite markers
+
+        // Define icons for 2D map
+        var receiverIcon = L.icon({
+                iconUrl: './ico/receiver.png',
+                iconSize: [36, 36],
+                iconAnchor: [18, 18],
+                tooltipAnchor: [0, -18]
+        });
+        var satelliteIcon = L.icon({
+                iconUrl: './ico/satellite.png',
+                iconSize: [36, 36],
+                iconAnchor: [18, 18],
+                tooltipAnchor: [18, 0]
+        });
+
+        // Add GPS receiver icon to centre of 2D map
+        L.marker(mapCentre, {  
+            icon: receiverIcon
+        })
+        .bindTooltip(            // Create tooltip
+            "<span style='color:#ffffff'>SENSOR LOCATION<br>" +
+            "<span style='color:#ffff00'>Ottawa</span>",
+            { className: 'sensorTooltip', direction: 'top' },
+        )
+        .addTo(map2D)
+
+        // Initialize dictionaries to hold TLE data
+        let tles_dict = {};
+        let satrec_dict = {};
+
+        //------------------------------------------------------------------------
+        //                 Azimuth vs. Elevation Sky Plot
+        //------------------------------------------------------------------------
+
+        const angular_label_color = '#ffffff'
+        const angular_grid_color = '#404040'
+        const radial_label_color = '#ff80ff'
+        const radial_grid_color = '#ff33ff'
+        const skyplot_font = 'Cloud'
+
+        function createSkyplot(data, targetDiv) {
+            const layout = {
+                title: '<span style="font-family:Cloud; shadow:black"><span style="color:#ffffff">  AZIMUTH</span>  <span style="color:#00cccc">vs.</span> <span style="color:#ff80ff">ELEVATION</span></span>',
+                paper_bgcolor: '#262626',
+                autosize: true,
+                dragmode: false,
+                polar: {
+                    bgcolor: '#000000',
+                    radialaxis: {
+                        angle: 90,
+                        showline: false,
+                        layer: 'below traces',
+                        ticks: '',
+                        tickvals: [10, 20, 30, 40, 50, 60, 70, 80, 90],
+                        ticksuffix: '°',
+                        tickfont: {color: radial_label_color, family: skyplot_font, size: 14, shadow: 'black'},
+                        tickangle: 90,
+                        range: [90, 0],
+                        type: 'linear',
+                        gridcolor: radial_grid_color,
+                        zerolinecolor: radial_grid_color,
+                    },
+                    angularaxis: {
+                        direction: 'clockwise',
+                        rotation: 90,
+                        linewidth: 2,
+                        linecolor: radial_grid_color,
+                        gridwidth: 2,
+                        gridcolor: angular_grid_color,
+                        zerolinecolor: angular_grid_color,
+                        layer: 'below traces',
+                        ticks: 'outside',
+                        tickvals: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 
+                                    190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350],
+                        ticktext: ['0°', '', '', '30°', '', '', '60°', '', '', '90°', '', '', '120°', '', '', '150°', '', '', '180°',
+                                    '', '', '210°', '', '', '240°', '', '', '270°', '', '', '300°', '', '', '330°', '', ''],
+                        tickfont: {color: angular_label_color, family: skyplot_font, size: 14, shadow: 'black'},
+                    },
+                },
+                    showlegend: false,
+            };
+            const configPlotly = {
+              responsive: true,
+              displayModeBar: false,
+            };
+            Plotly.newPlot(targetDiv, data, layout, configPlotly);
+        }
+
+        function resizePlot(plotDivId) {
+            const plotDiv = document.getElementById(plotDivId);
+            Plotly.relayout(plotDivId, {
+                width: plotDiv.offsetWidth - 10,
+                height: plotDiv.offsetHeight - 10
+            });
+        }
+
+
+        //------------------------------------------------------------------------
+        //                             MQTT
+        //------------------------------------------------------------------------
+
+
+        // Specify MQTT parameters
+        const mqtt_host = 'ws://broker.emqx.io:8083/mqtt'
+        const mqtt_client_id = 'mqttjs_' + Math.random().toString(16).substr(2, 8)
+        const mqtt_topic_sensor_data = 'OpA25/sensor_data';
+        const mqtt_topic_tle_prefix = 'OpA25/tle/#';
+        const mqtt_options = {
+              keepalive: 60,
+              clientId: mqtt_client_id,
+              protocolId: 'MQTT',
+              protocolVersion: 4,
+              clean: true,
+              reconnectPeriod: 1000,
+              connectTimeout: 30 * 1000,
+              will: {
+                topic: 'WillMsg',
+                payload: 'Connection closed abnormally.',
+                qos: 0,
+                retain: false
+              },
+        }
+
+        const client = mqtt.connect(mqtt_host, mqtt_options)  // Connect MQTT client
+
+        client.on('error', (err) => {
+            console.log('Connection error: ', err)
+            client.end()
+        })
+
+        client.on('reconnect', () => {
+            console.log('Reconnecting...')
+        })
+
+        client.on('connect', () => {
+            console.log('MQTT client connected: ', mqtt_client_id)
+            client.subscribe(mqtt_topic_tle_prefix, { qos: 0 })   // Subscribe to all MQTT topics re TLE data
+            client.subscribe(mqtt_topic_sensor_data, { qos: 0 })  // Subscribe to MQTT topic re sensor data
+        })
+
+        // Upon receipt of a MQTT message, process its payload
+        client.on('message', (topic, message, packet) => {
+//            console.log(`On topic: ${topic}, received message: ${message.toString()} `)
+            msg = JSON.parse(message)  // Reconstruct dictionary from message payload
+            switch(topic) {
+                case 'OpA25/sensor_data':   // Do when MQTT message about sensor data is received
+                    // Unpack the dictionary reconstructed from the message's payload
+                    var msg_date_dmy = msg['date_dmy'];
+                    var msg_timestamp_utc = msg['timestamp_utc']
+                    var msg_sat_visible_ids = msg['sat_visible_ids'];
+                    var msg_look_angles = msg['look_angles'];
+                    var msg_lat_lon = msg['lat_lon'];
+                    // Construct variables for left panel
+                    if (msg_timestamp_utc[0] < 10) {
+                        formatted_hour = '0' + msg_timestamp_utc[0];
+                    } else {
+                        formatted_hour = msg_timestamp_utc[0];
+                    }
+                    if (msg_timestamp_utc[1] < 10) {
+                        formatted_min = '0' + msg_timestamp_utc[1];
+                    } else {
+                        formatted_min = msg_timestamp_utc[1];
+                    }
+                    if (msg_timestamp_utc[2] < 10) {
+                        formatted_sec = '0' + msg_timestamp_utc[2];
+                    } else {
+                        formatted_sec = msg_timestamp_utc[2];
+                    }
+                    var formatted_time = formatted_hour + ':' + formatted_min + ":" + formatted_sec;
+
+                    var sensed_sat_names = [];
+                    for (i in msg_sat_visible_ids) {
+                        id = msg_sat_visible_ids[i];
+                        sensed_sat_names.push(satellite_names[id.toString()]);
+                    }
+                    sensed_sat_names.sort();
+
+                    // Create the arrays of satellite elevations and azimuths required by sky plot
+                    var look_angles_sat_ids = [];
+                    var look_angles_elevations = [];
+                    var look_angles_azimuths = [];
+                    var look_angles_custom_data = [];
+                    for (let k in msg_look_angles) {     // Iterate over each key in msg_look_angles dictionary
+                        look_angles_sat_ids.push(k);     // Append satellite ID to look_angles_sat_ids array
+                        look_angles_elevations.push(msg_look_angles[k][0]);  // Append associated elevation to look_angles_elevations array
+                        look_angles_azimuths.push(msg_look_angles[k][1]);    // Append associated azimuth to look_angles_azimuths array
+                        look_angles_custom_data.push([satellite_names[k],k]); // Append satellite name and PRN to look_angles_custom_data array
+                    }
+
+                    // Populate left panel
+                    var leftDivHeadingColor = '#00ffff';
+                    var leftDivValueColor = '#ff33ff';
+
+                    var sat_name_rows = ""
+                    var test1 = "sea";
+                    var test2 = "food";
+                    for (let i in sensed_sat_names) {
+                        sat_name_rows += '<div class="row" style="color:' + leftDivValueColor + '">' + sensed_sat_names[i].toString() + '</div>';
+                    }
+
+                    var leftDivContent = 
+                        '<div class="row" style="color:' + leftDivHeadingColor + '">SENSOR LOCATION<br></div>' +
+                        '<div class="row" style="color:' + leftDivValueColor + '">OTTAWA<br>ONTARIO<br>CANADA</div>' +
+                        '<div class="row"><br></div>' +
+                        '<div class="row" style="color:' + leftDivHeadingColor + '">SENSOR TIMESTAMP<br></div>' +
+                        '<div class="row" style="color:' + leftDivValueColor + '">' + msg_date_dmy + '</div>' +
+                        '<div class="row" style="color:' + leftDivValueColor + '">' + formatted_time + ' UTC</div>' +
+                        '<div class="row"><br></div>' +
+                        '<div class="row" style="color:' + leftDivHeadingColor + '">SATELLITES SENSED<br></div>' +
+                        '<div class="row" style="color:' + leftDivValueColor + '">' + msg_sat_visible_ids.length + '</div>' +
+                        '<div class="row"><br></div>' +
+                        '<div class="row" style="color:' + leftDivHeadingColor + '">SENSED SATELLITES<br></div>' +
+                        sat_name_rows
+                    ;
+                    populateDiv('leftPanel', leftDivContent);
+
+
+                    // From 2D map, delete all satellite markers
+                    satelliteMarkerGroup.clearLayers()
+
+                    // On 2D map, create a marker at each satellite's coordinates
+                    for (let key in msg_lat_lon) {      // For each key (satellite ID) in the lat_lon dictionary
+                        var map_tooltip_lat = msg_lat_lon[key][0];
+                        var map_tooltip_lon = msg_lat_lon[key][1];
+                        if ( map_tooltip_lon < -180) { map_tooltip_lon = map_tooltip_lon + 360 };
+                        L.marker( msg_lat_lon[key], {   
+                            icon: satelliteIcon,  // Add satellite icon
+                            zIndexOffset: 999
+                        }).addTo(satelliteMarkerGroup)
+                        .bindTooltip(            // Create tooltip
+                        "<span style='color:#ffffff'>" + satellite_names[key] + "</span><br>" +
+                            "PRN code: " + key + "<br>" +
+                            "Latitude: " + map_tooltip_lat.toFixed(1) + "°<br>" +
+                            "Longitude: " + map_tooltip_lon.toFixed(1) + "°<br>",
+                            { className: 'satelliteTooltip', direction: 'auto' },
+                        )
+                    }
+
+
+
+
+
+                    // Calculate current satellite parameters from TLE dictionary
+
+                    var current_tle = tles_dict['9']['header'] + '\n' + tles_dict['9']['line_1'] + '\n' + tles_dict['9']['line_2'];
+console.log('Current TLE = ' + current_tle)
+
+//                    var tle_line_1 = tles_dict['9']['line_1'];
+//                    var tle_line_2 = tles_dict['9']['line_2'];
+//                    var parsed_tle = tle.parse(tle_line_1, tle_line_2);
+//                    console.log('Parsed TLE = ' + parsed_tle);
+
+
+
+//import { getLatLngObj } from "tle.js";
+//const optionalTimestampMS = 1502342329860;
+//const latLonObj = getLatLngObj(current_tle, optionalTimestampMS);
+
+//const latLonObj = getLatLngObj(current_tle);
+
+
+
+////console.log(tles_dict['9']['line_2']);
+//                    var date = new Date();
+//console.log('Date = ' + date);
+////console.log(tles_dict)
+//                    var satrec = satellite.twoline2satrec(tles_dict['9']['line_1'], tles_dict['9']['line_2']);  // Initialize a satellite record
+//                    var positionAndVelocity = satellite.propagate(satrec, date);
+//                    var gmst = satellite.gstime(date);
+//                    var position = satellite.eciToGeodetic(positionAndVelocity.position, gmst);
+//console.log('GMST = ' + gmst)
+//console.log(position)
+////console.log('Lat = ', position.latitude);
+////console.log('Lon = ', position.longitude);
+////console.log('Height = ', position.height);
+//                    L.marker( [position.latitude, position.longitude], {   
+//                        icon: satelliteIcon,  // Add satellite icon
+//                        zIndexOffset: 999
+//                    }).addTo(satelliteMarkerGroup)
+//                    .bindTooltip(            // Create tooltip
+//                        "<span style='color:#ffffff'>" + "MODELLED SATELLITE" + "</span><br>" +
+//                        "PRN code: MODELLED" + "<br>" +
+//                        "Latitude: " + position.latitude.toFixed(1) + "°<br>" +
+//                        "Longitude: " + position.longitude.toFixed(1) + "°<br>",
+//                        { className: 'satelliteTooltip', direction: 'auto' },
+//                    )
+
+
+
+
+
+                    // Define sky plot
+                    const skyPlotData = [{
+                        type: 'scatterpolar',
+                        r: look_angles_elevations,
+                        theta: look_angles_azimuths,
+                        customdata: look_angles_custom_data,
+                        mode: 'markers',
+                        marker: { size: 20, color: '#00ffff70', line: {color: '#00ffff', width: 2 } },
+                        hoverlabel: { bgcolor: '#262626', bordercolor: 'cyan', font: {family: skyplot_font, size: 13, color: '#b3b300'}, align: 'left' },
+                        hovertemplate: '<span style="color:#ffffff">%{customdata[0]}<br></span>' +
+                                       'PRN code :  %{customdata[1]}<br>' +
+                                       'Azimuth :  %{theta}<br>' +
+                                       'Elevation :  %{r}' +
+                                        '<extra></extra>',
+                    }]
+
+                    // Generate sky plot
+                    createSkyplot(skyPlotData, skyPlot);
+
+                    // Resize sky plot to fit the dimensions of its div
+                    resizePlot('skyPlot');
+
+                    break;
+
+                default:   // Do when MQTT message about another topic is received (e.g., TLE)
+//                    console.log('PRN = ', topic.substring(14));
+//                    console.log('Message = ', msg);
+                    tles_dict[topic.substring(14)] = msg[topic.substring(14)];  // Update TLEs dictionary with message payload's dictionary value
+//                    satrec_dict[topic.substring(14)] = satellite.twoline2satrec(tles_dict[topic.substring(14)]['line_1'], tles_dict[topic.substring(14)]['line_2']);
+
+
+//                    console.log('Dictionary = ', tles_dict);
+            }
+        })
+
+
+    </script>
+
+</body>
+
+</html>
