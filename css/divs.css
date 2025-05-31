@@ -1,0 +1,154 @@
+@keyframes upDown 
+{
+/*    to { transform: translatey(calc(1px * 5 * var(--vh_in_px)));} */
+/*    to{ transform: translatey(100%); } */
+    to{ transform: translatey(130%); }
+}
+
+@keyframes translate {
+    to { transform: translatex(100%); }
+}
+
+
+body {
+
+        overflow: hidden; 
+
+    .topPanel {
+        position: relative;
+        color: #ff33ff;
+        font-family: Cloud;
+        font-size: 45px;
+        text-align: center;
+        vertical-align: center;
+/*        background-color: #262626;
+        border: 1px solid white;
+        border-radius: 20px;  */
+        height: 10vh;  
+        width: 100%;
+        padding: 1.7vh 0;
+        line-height: 1;
+        margin-bottom: 1vh;
+        margin-left: 0%;
+        margin-right: 0%;
+        z-index: 1;
+    }
+
+    .satelliteCanvas {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        height: calc(1px * var(--satelliteDivOffsetHeight));
+        width: 100%;
+    }
+
+    .satCanvas {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        z-index: -1;
+    }
+
+    .satelliteDiv {
+        position: relative;
+        top: 0vh;
+        left: 0%;
+        height: 10vh;
+        width: 100%;
+        animation: translate 240s infinite linear;
+        z-index: 100;
+    }
+
+    .satelliteImage {
+        position:absolute;
+        top: 0;
+        left: 0;
+        height: 36px;
+        width: 36px;
+        animation: upDown 60s alternate infinite ease-in-out;
+    }
+
+    .leftPanel {
+        position: relative;
+        color: white;
+        background-color: #262626;
+        border: 1px solid white;
+        border-radius: 20px;
+        height: 89vh;  
+        width: 13%;
+        margin-left: 0%;
+        margin-right: 0.25%;
+        text-align:center;
+        vertical-align:top;
+        display: flex;
+        flex-direction: column;
+        justify-content:flex-start;
+    }
+
+    .skyPlot {
+        position: relative;
+        background-color: #262626;
+        border: 1px solid white;
+        border-radius: 20px;
+        height: 89vh;  
+        width: 35%;
+        padding: 0;
+        margin-left: 0.25%; 
+        margin-right: 0.25%; 
+    }
+
+    .map2D {
+        position: relative;
+        background-color: #262626;
+        border: 1px solid white;
+        border-radius: 20px;
+        height: 89vh;  
+        width: 51%;
+        margin-left: 0.25%;
+        margin-right: 0%;
+    }
+
+
+    .sensorTooltip {
+        background-color: #262626;
+        color: #b3b300; 
+        border: 2px solid #ff80ff;
+        font-family: Cloud;
+        font-size: 14;
+        text-align: center;
+    }
+    .leaflet-tooltip-left.sensorTooltip:before {
+        border-left-color: #ff80ff;
+    }
+    .leaflet-tooltip-right.sensorTooltip:before {
+        border-right-color: #ff80ff;
+    }
+    .leaflet-tooltip-top.sensorTooltip:before {
+        border-top-color: #ff80ff;
+    }
+
+
+    .satelliteTooltip {
+        background-color: #262626;
+        color: #b3b300; 
+        border: 2px solid cyan;
+        font-family: Cloud;
+        font-size: 14;
+    }
+    .leaflet-tooltip-left.satelliteTooltip:before {
+        border-left-color: cyan;
+    }
+    .leaflet-tooltip-right.satelliteTooltip:before {
+        border-right-color: cyan;
+    }
+
+    .hovertext {
+        background-color: #26262620;
+        opacity: 0.8 !important; /* Opacity of tooltip background on look angles plot */
+    }
+       
+    .hovertext > text {
+        opacity: 1 !important; /* Ensures text remains fully opaque */
+    }
+
+}
