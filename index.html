@@ -386,7 +386,8 @@
 
 
         // Specify MQTT parameters
-        const mqtt_host = 'ws://broker.emqx.io:8083/mqtt'
+//        const mqtt_host = 'ws://broker.emqx.io:8083/mqtt'
+        const mqtt_host = 'wss://broker.emqx.io:8084/mqtt'
         const mqtt_client_id = 'mqttjs_' + Math.random().toString(16).substr(2, 8)
         const mqtt_topic_sensor_data = 'OpA25/sensor_data';
         const mqtt_topic_tle_prefix = 'OpA25/tle/#';
