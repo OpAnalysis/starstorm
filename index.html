@@ -492,7 +492,7 @@ console.log('latLonObj = ' + sat_lat + ', ' + sat_lng);
 ////console.log('Lat = ', position.latitude);
 ////console.log('Lon = ', position.longitude);
 ////console.log('Height = ', position.height);
-                    L.marker( [sat_lat, position.sat_lng], {   
+                    L.marker( [sat_lat, sat_lng], {   
                         icon: satelliteIcon,  // Add satellite icon
                         zIndexOffset: 999
                     }).addTo(satelliteMarkerGroup)
