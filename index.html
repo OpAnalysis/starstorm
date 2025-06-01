@@ -481,12 +481,7 @@ tlejs.getGroundTracks({  // Get ground track for 3 orbits of current satellite
     isLngLatFormat: false,  // Output array lits coordinates as lng,lat if true and lat,lng if false
 }).then(function (threeOrbitsArr) {
     // Do stuff with three orbits array here.
-    L.polyline( threeOrbitsArr, {color: 'white', width: 1} ).addTo(groundTracksGroup);
-    
-    
-    
-    
-    //    console.log('Three Orbit Array = ' + threeOrbitsArr.toString())
+    L.polyline( threeOrbitsArr, {color: 'white', width: 0.5} ).addTo(groundTracksGroup);
 });
 
 
