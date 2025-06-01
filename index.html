@@ -469,9 +469,9 @@ c
 
 
                     // Calculate current satellite parameters from TLE dictionary
-
-                    var current_tle = tles_dict['9']['header'] + '\n' + tles_dict['9']['line_1'] + '\n' + tles_dict['9']['line_2'];
-console.log('Current TLE = ' + current_tle)
+                    var current_sat_id = '15';
+                    var current_tle = tles_dict[current_sat_id]['header'] + '\n' + tles_dict[current_sat_id]['line_1'] + '\n' + tles_dict[current_sat_id]['line_2'];
+//console.log('Current TLE = ' + current_tle)
 
                     const latLonObj = tlejs.getLatLngObj(current_tle);
                     const sat_lat = latLonObj['lat'].toString();
@@ -492,17 +492,17 @@ console.log('latLonObj = ' + sat_lat + ', ' + sat_lng);
 ////console.log('Lat = ', position.latitude);
 ////console.log('Lon = ', position.longitude);
 ////console.log('Height = ', position.height);
-//                    L.marker( [position.latitude, position.longitude], {   
-//                        icon: satelliteIcon,  // Add satellite icon
-//                        zIndexOffset: 999
-//                    }).addTo(satelliteMarkerGroup)
-//                    .bindTooltip(            // Create tooltip
-//                        "<span style='color:#ffffff'>" + "MODELLED SATELLITE" + "</span><br>" +
-//                        "PRN code: MODELLED" + "<br>" +
-//                        "Latitude: " + position.latitude.toFixed(1) + "°<br>" +
-//                        "Longitude: " + position.longitude.toFixed(1) + "°<br>",
-//                        { className: 'satelliteTooltip', direction: 'auto' },
-//                    )
+                    L.marker( [sat_lat, position.sat_lng], {   
+                        icon: satelliteIcon,  // Add satellite icon
+                        zIndexOffset: 999
+                    }).addTo(satelliteMarkerGroup)
+                    .bindTooltip(            // Create tooltip
+                        "<span style='color:#ffffff'>" + "MODELLED SATELLITE" + "</span><br>" +
+                        "PRN code: MODELLED" + "<br>" +
+                        "Latitude: " + position.latitude.toFixed(1) + "°<br>" +
+                        "Longitude: " + position.longitude.toFixed(1) + "°<br>",
+                        { className: 'satelliteTooltip', direction: 'auto' },
+                    )
 
 
 
