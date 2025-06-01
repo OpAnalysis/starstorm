@@ -58,7 +58,7 @@
 //        import * as satellite from 'https://cdnjs.cloudflare.com/ajax/libs/satellite.js/5.0.0/satellite.js';
 //        import { getLatLngObj } from "./js/tle.js/dist/tlejs.umd.js";
 //        import { getLatLngObj } from "./js/tle.js/src/index.js";
-        import { getLatLngObj } from "tle.js";
+//        import { getLatLngObj } from "tle.js";
     </script>
 
 
@@ -491,7 +491,7 @@ console.log('Current TLE = ' + current_tle)
 //const optionalTimestampMS = 1502342329860;
 //const latLonObj = getLatLngObj(current_tle, optionalTimestampMS);
 
-const latLonObj = getLatLngObj(current_tle);
+const latLonObj = tlejs.getLatLngObj(current_tle);
 console.log('latLonObj = ' + latLonObj);
 
 
