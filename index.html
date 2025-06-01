@@ -231,13 +231,13 @@ c
         var satelliteMarkerGroup = L.layerGroup().addTo(map2D);  // Layer group for satellite markers
 
         // Define icons for 2D map
-        var receiverIcon = L.icon({
+        const receiverIcon = L.icon({
                 iconUrl: './ico/receiver.png',
                 iconSize: [36, 36],
                 iconAnchor: [18, 18],
                 tooltipAnchor: [0, -18]
         });
-        var satelliteIcon = L.icon({
+        const satelliteIcon = L.icon({
                 iconUrl: './ico/satellite.png',
                 iconSize: [36, 36],
                 iconAnchor: [18, 18],
@@ -477,7 +477,7 @@ c
                     // Get ground track for 3 orbits of current satellite
                     tlejs.getGroundTracks({  // Get ground track for 3 orbits of current satellite
                         tle: current_tle,    // Current satellite's TLE
-                        stepMS: 10000,       // Time between calculations of position along orbit in ms
+                        stepMS: 20000,       // Time between calculations of position along orbit in ms
                         isLngLatFormat: false,  // Output array lits coordinates as lng,lat if true and lat,lng if false
                     }).then(function (threeOrbitsArr) {  // After promise has been fufilled, do the following
                         currentOrbitArr = threeOrbitsArr[1];  // Get ground track for current orbit from three orbits array
