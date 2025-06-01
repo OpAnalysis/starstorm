@@ -478,7 +478,7 @@ c
 tlejs.getGroundTracks({  // Get ground track for 3 orbits of current satellite
     tle: current_tle,    // Current satellite's TLE
     stepMS: 10000,       // Time between calculations of position along orbit in ms
-    isLngLatFormat: true,  // Output array lits coordinates as lng,lat if true and lat,lng if false
+    isLngLatFormat: false,  // Output array lits coordinates as lng,lat if true and lat,lng if false
 }).then(function (threeOrbitsArr) {
     // Do stuff with three orbits array here.
     L.polyline( threeOrbitsArr, {color: 'yellow'} ).addTo(groundTracksGroup);
