@@ -474,19 +474,16 @@ c
 //console.log('Current TLE = ' + current_tle)
 
 
-const threeOrbitsArr = await getGroundTracks({
+getGroundTracks({
     tle: current_tle,
-
-    // Relative time to draw orbits from.  This will be used as the "middle"/current orbit.
-    // startTimeMS: 1502342329860,
-
-    // Resolution of plotted points.  Defaults to 1000 (plotting a point once for every second).
     stepMS: 1000,
-
-    // Returns points in [lng, lat] order when true, and [lat, lng] order when false.
     isLngLatFormat: true,
+}).then(function (threeOrbitsArr) {
+    // Do stuff with three orbits array here.
+    console.log('Three Orbit Array = ' + threeOrbitsArr.toString())
 });
-console.log('Three Orbit Array = ' + threeOrbitsArr.toString())
+
+
                     
                     
 //const latLonObj = tlejs.getLatLngObj(current_tle);
