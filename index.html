@@ -481,7 +481,7 @@ c
                         isLngLatFormat: false,  // Output array lits coordinates as lng,lat if true and lat,lng if false
                     }).then(function (threeOrbitsArr) {  // After promise has been fufilled, do the following
                         L.polyline( threeOrbitsArr, {color: '#b3b30080', weight: 1} ).addTo(groundTracksGroup);  // Plot current satellite's ground track
-                        console.log("Array length = " + threeOrbitsArr.length;
+                        console.log("Array length = " + threeOrbitsArr.length);
                         console.log("First two values: = " + threeOrbitsArr[0].toString() + ", " + threeOrbitsArr[1].toString() );
                         console.log("Last two values: = " + threeOrbitsArr[threeOrbitsArr.length - 2].toString() + ", " + threeOrbitsArr[threeOrbitsArr.length - 1].toString() );
                     });
