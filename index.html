@@ -480,10 +480,11 @@ c
                         stepMS: 10000,       // Time between calculations of position along orbit in ms
                         isLngLatFormat: false,  // Output array lits coordinates as lng,lat if true and lat,lng if false
                     }).then(function (threeOrbitsArr) {  // After promise has been fufilled, do the following
-                        L.polyline( threeOrbitsArr, {color: '#b3b30080', weight: 1} ).addTo(groundTracksGroup);  // Plot current satellite's ground track
-                        console.log("Array length = " + threeOrbitsArr.length);
-                        console.log("First two values: = " + threeOrbitsArr[0][0].toString() );
-                        console.log("Last two values: = " + threeOrbitsArr[threeOrbitsArr.length - 1][0].toString() );
+                        currentOrbitArr = threeOrbitsArr[1];  // Get ground track for current orbit from three orbits array
+                        L.polyline( currentOrbitArr, {color: '#b3b30080', weight: 1} ).addTo(groundTracksGroup);  // Plot current satellite's ground track
+                        console.log("Array length = " + currentOrbitArr.length);
+                        console.log("First two values: = " + currentOrbitArr[0].toString() );
+                        console.log("Last two values: = " + currentOrbitArr[currentOrbitArr.length - 1][0].toString() );
                     });
 
                     
