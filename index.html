@@ -483,8 +483,8 @@ c
                         currentOrbitArr = threeOrbitsArr[1];  // Get ground track for current orbit from three orbits array
                         L.polyline( currentOrbitArr, {color: '#b3b30080', weight: 1} ).addTo(groundTracksGroup);  // Plot current satellite's ground track
                         console.log("Array length = " + currentOrbitArr.length);
-                        console.log("First two values: = " + currentOrbitArr[0].toString() );
-                        console.log("Last two values: = " + currentOrbitArr[currentOrbitArr.length - 1][0].toString() );
+                        console.log("First coordinates: = (" + currentOrbitArr[0].toString() + ')' );
+                        console.log("Last two values: = (" + currentOrbitArr[currentOrbitArr.length - 1].toString() + ')' );
                     });
 
                     
