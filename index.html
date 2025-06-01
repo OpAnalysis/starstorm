@@ -473,36 +473,40 @@ c
                     var current_tle = tles_dict[current_sat_id]['header'] + '\n' + tles_dict[current_sat_id]['line_1'] + '\n' + tles_dict[current_sat_id]['line_2'];
 //console.log('Current TLE = ' + current_tle)
 
-                    const latLonObj = tlejs.getLatLngObj(current_tle);
-                    const sat_lat = latLonObj['lat'].toString();
-                    const sat_lng = latLonObj['lng'].toString();
-console.log('latLonObj = ' + sat_lat + ', ' + sat_lng);
+
+const threeOrbitsArr = await getGroundTracks({
+    tle: current_tle,
+
+    // Relative time to draw orbits from.  This will be used as the "middle"/current orbit.
+    // startTimeMS: 1502342329860,
+
+    // Resolution of plotted points.  Defaults to 1000 (plotting a point once for every second).
+    stepMS: 1000,
+
+    // Returns points in [lng, lat] order when true, and [lat, lng] order when false.
+    isLngLatFormat: true,
+});
+console.log('Three Orbit Array = ' + threeOrbitsArr.toString())
+                    
+                    
+//const latLonObj = tlejs.getLatLngObj(current_tle);
+//const sat_lat = latLonObj['lat'].toString();
+//const sat_lng = latLonObj['lng'].toString();
+//console.log('latLonObj = ' + sat_lat + ', ' + sat_lng);
 
 
-////console.log(tles_dict['9']['line_2']);
-//                    var date = new Date();
-//console.log('Date = ' + date);
-////console.log(tles_dict)
-//                    var satrec = satellite.twoline2satrec(tles_dict['9']['line_1'], tles_dict['9']['line_2']);  // Initialize a satellite record
-//                    var positionAndVelocity = satellite.propagate(satrec, date);
-//                    var gmst = satellite.gstime(date);
-//                    var position = satellite.eciToGeodetic(positionAndVelocity.position, gmst);
-//console.log('GMST = ' + gmst)
-//console.log(position)
-////console.log('Lat = ', position.latitude);
-////console.log('Lon = ', position.longitude);
-////console.log('Height = ', position.height);
-                    L.marker( [sat_lat, sat_lng], {   
-                        icon: satelliteIcon,  // Add satellite icon
-                        zIndexOffset: 999
-                    }).addTo(satelliteMarkerGroup)
-                    .bindTooltip(            // Create tooltip
-                        "<span style='color:#ffffff'>" + "MODELLED SATELLITE" + "</span><br>" +
-                        "PRN code: MODELLED" + "<br>" +
-                        "Latitude: " + sat_lat + "°<br>" +
-                        "Longitude: " + sat_lng + "°<br>",
-                        { className: 'satelliteTooltip', direction: 'auto' },
-                    )
+
+//                    L.marker( [sat_lat, sat_lng], {   
+//                        icon: satelliteIcon,  // Add satellite icon
+//                        zIndexOffset: 999
+//                    }).addTo(satelliteMarkerGroup)
+//                    .bindTooltip(            // Create tooltip
+//                        "<span style='color:#ffffff'>" + "MODELLED SATELLITE" + "</span><br>" +
+//                        "PRN code: MODELLED" + "<br>" +
+//                        "Latitude: " + sat_lat + "°<br>" +
+//                        "Longitude: " + sat_lng + "°<br>",
+//                        { className: 'satelliteTooltip', direction: 'auto' },
+//                    )
 
 
 
