@@ -249,8 +249,8 @@
             "<span style='color:#ffffff'>SENSOR<br>" +
             "<span style='color:#ffff00'>" +
             "Location: Ottawa<br>" +
-            "Latitude: " + mapCentre[0].toString() + "<br>" +
-            "Longitude: " + mapCentre[1].toString() + "</span>",
+            "Latitude: " + mapCentre[0].toFixed(1).toString() + "<br>" +
+            "Longitude: " + mapCentre[1].toFixed(1).toString() + "</span>",
             { className: 'sensorTooltip', direction: 'top' },
         )
         .addTo(map2D)
