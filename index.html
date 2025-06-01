@@ -332,11 +332,10 @@ c
 
 
         // Specify MQTT parameters
-//        const mqtt_host = 'ws://broker.emqx.io:8083/mqtt'
-        const mqtt_host = 'wss://broker.emqx.io:8084/mqtt'
-        const mqtt_client_id = 'mqttjs_' + Math.random().toString(16).substr(2, 8)
-        const mqtt_topic_sensor_data = 'OpA25/sensor_data';
-        const mqtt_topic_tle_prefix = 'OpA25/tle/#';
+        const mqtt_host = 'wss://broker.emqx.io:8084/mqtt'  // Connect via secure web socket
+        const mqtt_client_id = 'mqttjs_' + Math.random().toString(16).substr(2, 8)  // Use random MQTT client ID
+        const mqtt_topic_sensor_data = 'OpA25/sensor_data';   // MQTT topic for sensor data messages
+        const mqtt_topic_tle_prefix = 'OpA25/tle/#';          // MQTT topic prefix for TLE messages
         const mqtt_options = {
               keepalive: 60,
               clientId: mqtt_client_id,
@@ -347,7 +346,7 @@ c
               connectTimeout: 30 * 1000,
               will: {
                 topic: 'WillMsg',
-                payload: 'Connection closed abnormally.',
+                payload: 'Connection to MQTT broker closed abnormally.',
                 qos: 0,
                 retain: false
               },
@@ -356,16 +355,16 @@ c
         const client = mqtt.connect(mqtt_host, mqtt_options)  // Connect MQTT client
 
         client.on('error', (err) => {
-            console.log('Connection error: ', err)
+            console.log('Error connecting to MQTT broker: ', err)
             client.end()
         })
 
         client.on('reconnect', () => {
-            console.log('Reconnecting...')
+            console.log('Reconnecting to MQTT broker...')
         })
 
         client.on('connect', () => {
-            console.log('MQTT client connected: ', mqtt_client_id)
+            console.log('MQTT client connected with client ID: ', mqtt_client_id)
             client.subscribe(mqtt_topic_tle_prefix, { qos: 0 })   // Subscribe to all MQTT topics re TLE data
             client.subscribe(mqtt_topic_sensor_data, { qos: 0 })  // Subscribe to MQTT topic re sensor data
         })
@@ -480,37 +479,12 @@ c
                         tle: current_tle,    // Current satellite's TLE
                         stepMS: 10000,       // Time between calculations of position along orbit in ms
                         isLngLatFormat: false,  // Output array lits coordinates as lng,lat if true and lat,lng if false
-                    }).then(function (threeOrbitsArr) {
-                        // Do stuff with three orbits array here.
-                        L.polyline( threeOrbitsArr, {color: '#b3b300', weight: 1} ).addTo(groundTracksGroup);
+                    }).then(function (threeOrbitsArr) {  // After promise has been fufilled, do the following
+                        L.polyline( threeOrbitsArr, {color: '#b3b30080', weight: 1} ).addTo(groundTracksGroup);  // Plot current satellite's ground track
                     });
 
-
                     
                     
-//const latLonObj = tlejs.getLatLngObj(current_tle);
-//const sat_lat = latLonObj['lat'].toString();
-//const sat_lng = latLonObj['lng'].toString();
-//console.log('latLonObj = ' + sat_lat + ', ' + sat_lng);
-
-
-
-//                    L.marker( [sat_lat, sat_lng], {   
-//                        icon: satelliteIcon,  // Add satellite icon
-//                        zIndexOffset: 999
-//                    }).addTo(satelliteMarkerGroup)
-//                    .bindTooltip(            // Create tooltip
-//                        "<span style='color:#ffffff'>" + "MODELLED SATELLITE" + "</span><br>" +
-//                        "PRN code: MODELLED" + "<br>" +
-//                        "Latitude: " + sat_lat + "°<br>" +
-//                        "Longitude: " + sat_lng + "°<br>",
-//                        { className: 'satelliteTooltip', direction: 'auto' },
-//                    )
-
-
-
-
-
                     // Define sky plot
                     const skyPlotData = [{
                         type: 'scatterpolar',
