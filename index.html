@@ -474,7 +474,9 @@ c
 console.log('Current TLE = ' + current_tle)
 
                     const latLonObj = tlejs.getLatLngObj(current_tle);
-console.log('latLonObj = ' + latLonObj.toString());
+                    const sat_Lat = latLonObj['lat'].toString();
+                    const sat_lng = latLonObj['lng'].toString();
+console.log('latLonObj = ' + sat_lat + ', ' + sat_lng);
 
 
 ////console.log(tles_dict['9']['line_2']);
