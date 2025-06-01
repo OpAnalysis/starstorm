@@ -79,7 +79,7 @@ c
 
     <script type="text/javascript">
 
-        // Create satellite-specific dictionaries
+        // Create dictionary of form satellite PRN : satellite name
         const satellite_names = {
             '1': 'NAVSTAR 83 / USA 440',
             '2': 'NAVSTAR 56 / USA 180',
@@ -481,7 +481,12 @@ tlejs.getGroundTracks({  // Get ground track for 3 orbits of current satellite
     isLngLatFormat: true,  // Output array lits coordinates as lng,lat if true and lat,lng if false
 }).then(function (threeOrbitsArr) {
     // Do stuff with three orbits array here.
-//    console.log('Three Orbit Array = ' + threeOrbitsArr.toString())
+    L.polyline( threeOrbitsArr, {color: 'yellow'} ).addTo(groundTracksGroup);
+    
+    
+    
+    
+    //    console.log('Three Orbit Array = ' + threeOrbitsArr.toString())
 });
 
 
