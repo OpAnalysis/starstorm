@@ -115,7 +115,7 @@ body {
         border: 2px solid #ff80ff;
         font-family: Cloud;
         font-size: 14;
-        text-align: center;
+        text-align: left;
     }
     .leaflet-tooltip-left.sensorTooltip:before {
         border-left-color: #ff80ff;
