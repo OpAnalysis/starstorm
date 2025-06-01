@@ -1,8 +1,8 @@
 (function (global, factory) {
 //  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('satellite.js')) :
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('./satellite.js')) :
-//  typeof define === 'function' && define.amd ? define(['exports', './satellite.js'], factory) :
-  typeof define === 'function' && define.amd ? define(['exports', 'satellite.js'], factory) :
+//  typeof define === 'function' && define.amd ? define(['exports', 'satellite.js'], factory) :
+  typeof define === 'function' && define.amd ? define(['exports', './satellite.js'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.tlejs = {}, global.satellite));
 })(this, (function (exports, satellite_js) { 'use strict';
 
