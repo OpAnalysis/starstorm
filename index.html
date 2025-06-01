@@ -473,13 +473,8 @@ c
                     var current_tle = tles_dict['9']['header'] + '\n' + tles_dict['9']['line_1'] + '\n' + tles_dict['9']['line_2'];
 console.log('Current TLE = ' + current_tle)
 
-
-//import { getLatLngObj } from "tle.js";
-//const optionalTimestampMS = 1502342329860;
-//const latLonObj = getLatLngObj(current_tle, optionalTimestampMS);
-
-const latLonObj = tlejs.getLatLngObj(current_tle);
-console.log('latLonObj = ' + latLonObj);
+                    const latLonObj = tlejs.getLatLngObj(current_tle);
+console.log('latLonObj = ' + latLonObj.toString());
 
 
 ////console.log(tles_dict['9']['line_2']);
