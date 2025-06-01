@@ -446,8 +446,9 @@ c
                     populateDiv('leftPanel', leftDivContent);
 
 
-                    // From 2D map, delete all satellite markers
-                    satelliteMarkerGroup.clearLayers()
+                    // From 2D map, delete all satellite markers and ground tracks
+                    satelliteMarkerGroup.clearLayers();
+                    groundTracksGroup.clearLayers();
 
                     // On 2D map, create a marker at each satellite's coordinates
                     for (let key in msg_lat_lon) {      // For each key (satellite ID) in the lat_lon dictionary
