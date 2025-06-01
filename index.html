@@ -469,20 +469,20 @@ c
 
 
 
-                    // Calculate current satellite parameters from TLE dictionary
                     var current_sat_id = '15';
+
+                    // Reconstruct current satellite's TLE from the TLEs dictionary
                     var current_tle = tles_dict[current_sat_id]['header'] + '\n' + tles_dict[current_sat_id]['line_1'] + '\n' + tles_dict[current_sat_id]['line_2'];
-//console.log('Current TLE = ' + current_tle)
 
-
-tlejs.getGroundTracks({  // Get ground track for 3 orbits of current satellite
-    tle: current_tle,    // Current satellite's TLE
-    stepMS: 10000,       // Time between calculations of position along orbit in ms
-    isLngLatFormat: false,  // Output array lits coordinates as lng,lat if true and lat,lng if false
-}).then(function (threeOrbitsArr) {
-    // Do stuff with three orbits array here.
-    L.polyline( threeOrbitsArr, {color: 'white', width: 0.5} ).addTo(groundTracksGroup);
-});
+                    // Get ground track for 3 orbits of current satellite
+                    tlejs.getGroundTracks({  // Get ground track for 3 orbits of current satellite
+                        tle: current_tle,    // Current satellite's TLE
+                        stepMS: 10000,       // Time between calculations of position along orbit in ms
+                        isLngLatFormat: false,  // Output array lits coordinates as lng,lat if true and lat,lng if false
+                    }).then(function (threeOrbitsArr) {
+                        // Do stuff with three orbits array here.
+                        L.polyline( threeOrbitsArr, {color: 'white', weight: 1} ).addTo(groundTracksGroup);
+                    });
 
 
                     
