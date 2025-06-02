@@ -481,6 +481,8 @@
                     // Get ground track for 3 orbits of current satellite
                     tlejs.getGroundTracks({  // Get ground track for 3 orbits of current satellite
                         tle: current_tle,    // Current satellite's TLE
+//                        startTimeMS: 1502342329860,
+                        startTimeMS: Date.now() - 12 * 60 * 60 * 1000,
                         stepMS: 30000,       // Time between calculations of position along orbit in ms
                         isLngLatFormat: false,  // Output array lits coordinates as lng,lat if true and lat,lng if false
                     }).then(function (threeOrbitsArr) {  // After promise has been fufilled, do the following
