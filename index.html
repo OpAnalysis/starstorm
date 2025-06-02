@@ -415,7 +415,7 @@
                         look_angles_elevations.push(msg_look_angles[k][0]);  // Append associated elevation to look_angles_elevations array
                         look_angles_azimuths.push(msg_look_angles[k][1]);    // Append associated azimuth to look_angles_azimuths array
                         look_angles_custom_data.push([satellite_names[k],k]); // Append satellite name and PRN to look_angles_custom_data array
-                    }
+                    };
 
                     // Populate left panel
                     var leftDivHeadingColor = '#00ffff';
@@ -426,7 +426,7 @@
                     var test2 = "food";
                     for (let i in sensed_sat_names) {
                         sat_name_rows += '<div class="row" style="color:' + leftDivValueColor + '">' + sensed_sat_names[i].toString() + '</div>';
-                    }
+                    };
 
                     var leftDivContent = 
                         '<div class="row" style="color:' + leftDivHeadingColor + '">SENSOR LOCATION<br></div>' +
@@ -468,9 +468,7 @@
                     }
 
 
-
-//                    var current_sat_id = '29';
-
+                    // Plot ground tracks for sensed satellites
                     for (const current_sat_id of msg_sat_visible_ids) {  // For each sensed satellite
                     
                         // Reconstruct current satellite's TLE from the TLEs dictionary
@@ -483,9 +481,7 @@
                             stepMS: 30000,       // Time between calculations of position along orbit in ms
                             isLngLatFormat: false,  // Output array lits coordinates as lng,lat if true and lat,lng if false
                         }).then(function (threeOrbitsArr) {  // After promise has been fufilled, do the following
-                            var firstOrbitArr = threeOrbitsArr[0];   // Get ground track for first orbit from three orbits array
                             var secondOrbitArr = threeOrbitsArr[1];  // Get ground track for second orbit from three orbits array
-                            var thirdOrbitArr = threeOrbitsArr[2];      // Get ground track for third orbi from three orbits array
                             L.polyline( secondOrbitArr, {color: '#b3b30080', weight: 1} ).addTo(groundTracksGroup);  // Plot current satellite's ground track
                         });
     
