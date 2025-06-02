@@ -484,15 +484,15 @@
                         stepMS: 20000,       // Time between calculations of position along orbit in ms
                         isLngLatFormat: false,  // Output array lits coordinates as lng,lat if true and lat,lng if false
                     }).then(function (threeOrbitsArr) {  // After promise has been fufilled, do the following
-                        firstOrbitArr = threeOrbitsArr[0];   // Get ground track for first orbit from three orbits array
-                        secondOrbitArr = threeOrbitsArr[1];  // Get ground track for second orbit from three orbits array
-                        thirdOrbit = threeOrbitsArr[2];      // Get ground track for third orbi from three orbits array
+                        var firstOrbitArr = threeOrbitsArr[0];   // Get ground track for first orbit from three orbits array
+                        var secondOrbitArr = threeOrbitsArr[1];  // Get ground track for second orbit from three orbits array
+                        var thirdOrbitArr = threeOrbitsArr[2];      // Get ground track for third orbi from three orbits array
                         L.polyline( secondOrbitArr, {color: '#b3b30080', weight: 1} ).addTo(groundTracksGroup);  // Plot current satellite's ground track
 //console.log("Array length = " + currentOrbitArr.length);
 //console.log("First coordinates: = (" + currentOrbitArr[0].toString() + ')' );
 //console.log("Last two values: = (" + currentOrbitArr[currentOrbitArr.length - 1].toString() + ')' );
                         const in_west_extremity = (element) => element >= ground_track_limit_west && element < secondOrbitArr[0][1];
-                        west_index = firstOrbitArr.findIndex(in_west_extremity);
+                        var west_index = firstOrbitArr.findIndex(in_west_extremity);
 console.log("West limit = " + ground_track_limit_west.toString() );
 console.log("Index = " + west_index.toString() );
 console.log("Value = " + firstOrbitArr[west_index][1].toString() );
