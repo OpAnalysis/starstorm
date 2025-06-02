@@ -497,6 +497,7 @@
 //console.log("First Orbit Arr [0][1] - 360 = " + lng_difference);
                         const west_lngs = [];
                         for (const element of firstOrbitArr) {
+                            console.log('Element[1] = ' + element[1]);
                             if (element[1] - 360 >= ground_track_limit_west) {
                                west_lngs.push(element[1]);
                             };
