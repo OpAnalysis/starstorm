@@ -489,9 +489,9 @@
 //console.log("Array length = " + currentOrbitArr.length);
 //console.log("First coordinates: = (" + currentOrbitArr[0].toString() + ')' );
 //console.log("Last two values: = (" + currentOrbitArr[currentOrbitArr.length - 1].toString() + ')' );
-                        west_index = threeOrbitsArr[0].findIndex((element) => threeOrbitsArr[0][element] <= ground_track_limit_west);
+                        west_index = threeOrbitsArr[0].findIndex((element) => threeOrbitsArr[0][element][1] <= ground_track_limit_west);
 console.log("West limit = " + ground_track_limit_west.toString() );
-console.log("Value = " + currentOrbitArr[0][west_index].toString() );
+console.log("Value = " + currentOrbitArr[0][west_index][1].toString() );
 console.log("Index = " + west_index.toString() );
 
                     });
