@@ -255,7 +255,9 @@
         )
         .addTo(map2D)
 
-// Get longitudes corresponding of western & eastern extremities of ground tracks
+        // Get longitudes corresponding of western & eastern extremities of ground tracks
+        const ground_track_limit_west = mapCentre - 180;
+        const ground_track_limit_east = mapCentre + 180;
         
         // Initialize dictionaries to hold TLE data
         let tles_dict = {};
@@ -484,9 +486,14 @@
                     }).then(function (threeOrbitsArr) {  // After promise has been fufilled, do the following
                         currentOrbitArr = threeOrbitsArr[1];  // Get ground track for current orbit from three orbits array
                         L.polyline( currentOrbitArr, {color: '#b3b30080', weight: 1} ).addTo(groundTracksGroup);  // Plot current satellite's ground track
-                        console.log("Array length = " + currentOrbitArr.length);
-                        console.log("First coordinates: = (" + currentOrbitArr[0].toString() + ')' );
-                        console.log("Last two values: = (" + currentOrbitArr[currentOrbitArr.length - 1].toString() + ')' );
+//console.log("Array length = " + currentOrbitArr.length);
+//console.log("First coordinates: = (" + currentOrbitArr[0].toString() + ')' );
+//console.log("Last two values: = (" + currentOrbitArr[currentOrbitArr.length - 1].toString() + ')' );
+                        west_index = threeOrbitsArr[0].findIndex((element) => threeOrbitsArr[0][element] <= ground_track_limit_west);
+console.log("West limit = " + ground_track_limit_west.toString() );
+console.log("Value = " + currentOrbitArr[0][west_index].toString() );
+console.log("Index = " + west_index.toString() );
+
                     });
 
                     
