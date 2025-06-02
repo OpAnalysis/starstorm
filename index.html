@@ -491,7 +491,8 @@
 //console.log("Array length = " + currentOrbitArr.length);
 //console.log("First coordinates: = (" + currentOrbitArr[0].toString() + ')' );
 //console.log("Last two values: = (" + currentOrbitArr[currentOrbitArr.length - 1].toString() + ')' );
-                        console.log("First Orbit Arr [0][1] = " + firstOrbitArr[0][1]);
+//                        console.log("First Orbit Arr [0][1] = " + firstOrbitArr[0][1]);
+                        console.log("First Orbit Arr [0] = " + firstOrbitArr[0].toString());
                         const in_west_extremity = (element) => firstOrbitArr[element][1] - 360 >= ground_track_limit_west;
 //                        const in_west_extremity = (element) => element >= ground_track_limit_west && element < secondOrbitArr[0][1];
                         var west_index = firstOrbitArr.findIndex(in_west_extremity);
