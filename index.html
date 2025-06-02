@@ -487,6 +487,7 @@
                         var firstOrbitArr = threeOrbitsArr[0];   // Get ground track for first orbit from three orbits array
                         var secondOrbitArr = threeOrbitsArr[1];  // Get ground track for second orbit from three orbits array
                         var thirdOrbitArr = threeOrbitsArr[2];      // Get ground track for third orbi from three orbits array
+secondOrbitArr = secondOrbitArr.concat(firstOrbitArr);
                         L.polyline( secondOrbitArr, {color: '#b3b30080', weight: 1} ).addTo(groundTracksGroup);  // Plot current satellite's ground track
 //console.log("Array length = " + currentOrbitArr.length);
 //console.log("First coordinates: = (" + currentOrbitArr[0].toString() + ')' );
@@ -499,7 +500,7 @@
                         for (const element of firstOrbitArr) {
 //                            console.log('Element[1] = ' + element[1]);
                             var lng_difference = element[1] - 360;
-                            console.log( lng_difference - ground_track_limit_west );
+//                            console.log( lng_difference - ground_track_limit_west );
                             if (lng_difference >= ground_track_limit_west) {
                                west_lngs.push(lng_difference);
                             };
