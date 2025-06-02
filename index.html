@@ -256,8 +256,8 @@
         .addTo(map2D)
 
         // Get longitudes corresponding of western & eastern extremities of ground tracks
-        const ground_track_limit_west = mapCentre - 180;
-        const ground_track_limit_east = mapCentre + 180;
+        const ground_track_limit_west = mapCentre[1] - 180;
+        const ground_track_limit_east = mapCentre[1] + 180;
         
         // Initialize dictionaries to hold TLE data
         let tles_dict = {};
