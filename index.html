@@ -481,7 +481,7 @@
                     // Get ground track for 3 orbits of current satellite
                     tlejs.getGroundTracks({  // Get ground track for 3 orbits of current satellite
                         tle: current_tle,    // Current satellite's TLE
-                        stepMS: 20000,       // Time between calculations of position along orbit in ms
+                        stepMS: 30000,       // Time between calculations of position along orbit in ms
                         isLngLatFormat: false,  // Output array lits coordinates as lng,lat if true and lat,lng if false
                     }).then(function (threeOrbitsArr) {  // After promise has been fufilled, do the following
                         var firstOrbitArr = threeOrbitsArr[0];   // Get ground track for first orbit from three orbits array
@@ -491,17 +491,24 @@
 //console.log("Array length = " + currentOrbitArr.length);
 //console.log("First coordinates: = (" + currentOrbitArr[0].toString() + ')' );
 //console.log("Last two values: = (" + currentOrbitArr[currentOrbitArr.length - 1].toString() + ')' );
-console.log("First Orbit Arr [0] = " + firstOrbitArr[0].toString());
-console.log("Type of firstOrbitArr[0][1] = " + typeof firstOrbitArr[0][1]);
-                        var lng_difference = firstOrbitArr[0][1] - 360;
-console.log("First Orbit Arr [0][1] - 360 = " + lng_difference);
-                        const in_west_extremity = (element) => firstOrbitArr[element][1] >= ground_track_limit_west + 360;
+//console.log("First Orbit Arr [0] = " + firstOrbitArr[0].toString());
+//console.log("Type of firstOrbitArr[0][1] = " + typeof firstOrbitArr[0][1]);
+//                        var lng_difference = firstOrbitArr[0][1] - 360;
+//console.log("First Orbit Arr [0][1] - 360 = " + lng_difference);
+                        const west_lngs = [];
+                        for (const element of firstOrbitArr) {
+                            if (element[1] - 360 >= ground_track_limit_west) {
+                               west_lngs.push(element[1]);
+                            };
+                        };
+console.log('West lngs = ' + west_lngs.toString());
+//                        const in_west_extremity = (element) => firstOrbitArr[element][1] - 360 >= ground_track_limit_west;
 //                        const in_west_extremity = (element) => element >= ground_track_limit_west && element < secondOrbitArr[0][1];
-                        var west_index = firstOrbitArr.findIndex(in_west_extremity);
-console.log("West limit = " + ground_track_limit_west.toString() );
-console.log("Index = " + west_index.toString() );
-console.log("Value = " + firstOrbitArr[west_index][1].toString() );
-        const in_east_extremity = (element) => element >= ground_track_limit_east;
+//                        var west_extremity_index = firstOrbitArr.findIndex(in_west_extremity);
+//console.log("West limit = " + ground_track_limit_west.toString() );
+//console.log("Index = " + west_extremity_index.toString() );
+//console.log("Value = " + firstOrbitArr[west_index_extremity][1].toString() );
+//        const in_east_extremity = (element) => element >= ground_track_limit_east;
 
                     });
 
