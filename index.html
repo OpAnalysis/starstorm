@@ -499,7 +499,7 @@
                         for (const element of firstOrbitArr) {
                             console.log('Element[1] = ' + element[1]);
                             if (element[1] - 360 >= ground_track_limit_west) {
-                               west_lngs.push(element[1]);
+                               west_lngs.push(element[1] - 360);
                             };
                         };
 console.log('West lngs = ' + west_lngs.toString());
