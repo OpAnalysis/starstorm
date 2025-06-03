@@ -259,18 +259,15 @@
         var sensedSatellitesMarkerGroup = L.layerGroup().addTo(map2D);  // Layer group for sensed satellite markers
         var notSensedSatellitesMarkerGroup = L.layerGroup().addTo(map2D);  // Layer group for satellite markers that were not sensed
 
-
+//Add layer controller
 var baseLayers = {};
 var overlays = {
-    "<img src='./ico/satellite - sensed.png' width = 15 /> <span>Satellites (sensed)</span>": sensedSatellitesMarkerGroup,
-    "Satellites (not sensed)": notSensedSatellitesMarkerGroup,
+    "<img src='./ico/satellite - sensed.png' width = 36 /> <span>Satellites (sensed)</span>": sensedSatellitesMarkerGroup,
+    "<img src='./ico/satellite - not sensed.png' width = 15 /> <span>Satellites (not sensed)</span>": notSensedSatellitesMarkerGroup,
     "Ground tracks": groundTracksGroup
 };
 L.control.layers(baseLayers, overlays).addTo(map2D);
 
-"<img src='Images/purple.jpeg' width = 15 /> <span>Up to $250K</span>"
-
-        
         // Define icons for 2D map
         const receiverIcon = L.icon({
                 iconUrl: './ico/receiver.png',
