@@ -190,7 +190,7 @@
                 L.marker( lat_lon_dict[key], {   
                     icon: selectedIcon,  // Add sensed satellite icon
                     zIndexOffset: 999
-                }).addTo(MarkerGroup)
+                }).addTo(markerGroup)
                 .bindTooltip(            // Create tooltip
                     "<span style='color:#ffffff'>" + satellite_names[key] + "</span><br>" +
                     "PRN code: " + key + "<br>" +
