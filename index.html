@@ -490,7 +490,7 @@
                     groundTracksGroup.clearLayers();
 
                     // On 2D map, create a marker at each sensed satellite's coordinates
-                    addSatelliteMarkers(msg_lat_lon, satelliteSensedIcon, sensedSatellitesMarkerGroup, sensedSatelliteTooltip);
+                    addSatelliteMarkers(msg_lat_lon, satelliteSensedIcon, sensedSatellitesMarkerGroup, 'sensedSatelliteTooltip');
 
                     // Create a dictionary containing TLE-derived coordinates of all satellites that were not sensed 
                     var not_sensed_lat_lon_dict = [];
@@ -500,7 +500,7 @@
                         not_sensed_lat_lon_dict.push( [ coords_dict['lat'], coords_dict['lng'] ] );
                     }
                     // On 2D map, create a marker at the locaton of each satellite that was not sensed
-                    addSatelliteMarkers(not_sensed_lat_lon_dict, satelliteNotSensedIcon, notSensedSatellitesMarkerGroup, notSensedSatelliteTooltip);  
+                    addSatelliteMarkers(not_sensed_lat_lon_dict, satelliteNotSensedIcon, notSensedSatellitesMarkerGroup, 'notSensedSatelliteTooltip');  
                     
                     // Plot ground tracks for sensed satellites
                     for (const current_sat_id of msg_sat_visible_ids) {  // For each sensed satellite
