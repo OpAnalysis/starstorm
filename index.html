@@ -490,16 +490,23 @@
                     // On 2D map, create a marker at each sensed satellite's coordinates
                     addSatelliteMarkers(msg_lat_lon, satelliteSensedIcon, satelliteMarkerGroup);
 
+                    // Create a dictionary containing TLE-derived coordinates of all satellites that were not sensed 
+                    var not_sensed_lat_lon_dict = [];
+                    for (const sat_id of satellites_not_sensed_ids) {  // For each satellite that was not sensed
+                        const tle = constructTleFromTlesDict(sat_id, tles_dict);
+                        const coords_dict = = getLatLngObj(tle);
+                        not_sensed_lat_lon_dict.push( [ coords_dict['lat'], coords_dict['lng'] ] );
+                    }
+console.log("Not sensed lat lon dict = " + not_sensed_lat_lon_dict );
+                    
                     // On 2D map, create a marker at the locaton of each satellite that was not sensed
-//                  addSatelliteMarkers(XXX, satelliteNotSensedIcon, satelliteMarkerGroup);  
-//satellites_not_sensed_ids
+//                    addSatelliteMarkers(XXX, satelliteNotSensedIcon, satelliteMarkerGroup);  
                     
                     // Plot ground tracks for sensed satellites
                     for (const current_sat_id of msg_sat_visible_ids) {  // For each sensed satellite
                     
                         // Reconstruct current satellite's TLE from the TLEs dictionary
                         var current_tle = constructTleFromTlesDict(current_sat_id, tles_dict);
-//                        var current_tle = tles_dict[current_sat_id]['header'] + '\n' + tles_dict[current_sat_id]['line_1'] + '\n' + tles_dict[current_sat_id]['line_2'];
 
 //function constructTleFromTlesDict(sat_id, tles_dict){
 //    const tle = tles_dict[sat_id]['header'] + '\n' + tles_dict[sat_id]['line_1'] + '\n' + tles_dict[sat_id]['line_2'];
