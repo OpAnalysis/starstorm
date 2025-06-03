@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 
     <!-- Add page title and favicon -->
-    <title>GPS Satellite Locations</title>
+    <title>STARSTORM</title>
     <link rel="icon" type="image/x-icon" href="./ico/satellite - sensed.png">
 
     <!-- Load Bootstrap -->
@@ -49,12 +49,21 @@
     <!-- Import tle.js -->
     <script src="./js/tlejs.umd.js"></script>
 
+    
     <style>
-    /* CSS to override layer controller's default Leaflet settings */
-    .leaflet-control-layers-expanded {  
-        background: #000000;
-    }
-</style>
+        /* CSS to override layer controller's default Leaflet settings */
+        .leaflet-control-layers-expanded {  
+            background: #000000;
+        }
+        .leaflet-control-layers-toggle{ 
+            width:auto;
+            line-height:36px;
+/*            background-position:3px 50% ;
+            padding:3px;
+            padding-left:36px;
+            text-decoration:none;
+ */       }
+    </style>
 
     
 </head>
