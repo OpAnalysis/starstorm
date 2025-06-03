@@ -49,6 +49,13 @@
     <!-- Import tle.js -->
     <script src="./js/tlejs.umd.js"></script>
 
+    <style>
+    /* CSS to override layer controller's default Leaflet settings */
+    .leaflet-control-layers-expanded {  
+        background: #000000;
+    }
+</style>
+
     
 </head>
 
@@ -266,12 +273,6 @@ var overlays = {
     "<img src='./ico/satellite - not sensed.png' width = 15 /> <span>Satellites (not sensed)</span>": notSensedSatellitesMarkerGroup,
     "Ground tracks": groundTracksGroup
 };
-<style>
-    .leaflet-control-layers-expanded {
-        background: #000000;
-    }
-</style>
-
 L.control.layers(baseLayers, overlays).addTo(map2D);
 
         // Define icons for 2D map
