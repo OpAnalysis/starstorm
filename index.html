@@ -266,8 +266,9 @@ var baseLayers = {};
 //};
 
 var overlays = {
-    "Satellites (sensed)": sensedSatellitesMarkerGroup,
-    "Ground tracks": groundTracksGroup
+    'Satellites (sensed)': sensedSatellitesMarkerGroup,
+    'Satellites (not sensed)': notSensedSatellitesMarkerGroup,
+    'Ground tracks': groundTracksGroup
 };
 
 L.control.layers(baseLayers, overlays).addTo(map2D);
