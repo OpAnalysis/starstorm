@@ -208,7 +208,7 @@
         }
         
         // Specify 2D map parameters
-        const mapBounds = [ [-90, -180], [90, 180] ];
+        const mapBounds = [ [-75, -180], [75, 180] ];
         const mapCentre = [0, 0];  // Coordinates at centre of map
         const sensorCoords = [45.42452817421958, -75.70070475902422];  // Parliament Hill
 
@@ -219,7 +219,6 @@
             fullscreenControl: true,                            // Add fullscreen control
             fullscreenControlOptions: { position: 'topleft' },  // Configure fullscreen control
         });
-//        map2D.fitBounds( [ [-90, -180], [90, 180] ], {padding: [0,0]} );     // Zoom to fit entire map
         map2D.fitBounds( mapBounds, {padding: [0,0]} );     // Zoom to fit entire map
         const initialZoom = map2D.getZoom();                    // Note corresponding zoom level for use when map view is reset
         map2D.setMinZoom( initialZoom );                        // Prevent map from being zoomed out further
@@ -248,7 +247,6 @@
             L.tileLayer('https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png', {
             	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
                 noWrap: true,                        // Show only one instance of map
-//                bounds: [ [-90, -180], [90, 180] ],  // Show entire map
                 bounds: mapBounds,  // Show entire map
             }).addTo(map2D);
 
@@ -539,7 +537,7 @@
                         theta: look_angles_azimuths,
                         customdata: look_angles_custom_data,
                         mode: 'markers',
-                        marker: { size: 20, color: '#0303fc70', line: {color: '#0303fc', width: 2 } },
+                        marker: { size: 20, color: '#00ffff70', line: {color: '#00ffff', width: 2 } },
                         hoverlabel: { bgcolor: '#262626', bordercolor: 'cyan', font: {family: skyplot_font, size: 13, color: '#b3b300'}, align: 'left' },
                         hovertemplate: '<span style="color:#ffffff">%{customdata[0]}<br></span>' +
                                        'PRN code :  %{customdata[1]}<br>' +
