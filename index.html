@@ -494,7 +494,7 @@
                     var not_sensed_lat_lon_dict = [];
                     for (const sat_id of satellites_not_sensed_ids) {  // For each satellite that was not sensed
                         const tle = constructTleFromTlesDict(sat_id, tles_dict);
-                        const coords_dict = getLatLngObj(tle);
+                        const coords_dict = tlejs.getLatLngObj(tle);
                         not_sensed_lat_lon_dict.push( [ coords_dict['lat'], coords_dict['lng'] ] );
                     }
 console.log("Not sensed lat lon dict = " + not_sensed_lat_lon_dict );
