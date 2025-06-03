@@ -280,6 +280,7 @@
         var sensedSatellitesMarkerGroup = L.layerGroup().addTo(map2D);  // Layer group for sensed satellite markers
         var notSensedSatellitesMarkerGroup = L.layerGroup().addTo(map2D);  // Layer group for satellite markers that were not sensed
 
+        
 //Add layer controller
 var baseLayers = {};
 var overlays = {
@@ -289,7 +290,6 @@ var overlays = {
 };
 L.control.layers(baseLayers, overlays).addTo(map2D);
 
-        <span class='my-layer-item'>My Layer</span>
         
         // Define icons for 2D map
         const receiverIcon = L.icon({
