@@ -208,7 +208,8 @@
         }
         
         // Specify coordinates at centre of 2D map
-        const mapCentre = [45.42452817421958, -75.70070475902422];  // Parliament Hill
+        const mapCentre = [0, 0];  // Parliament Hill
+        const sensorCoords = [45.42452817421958, -75.70070475902422];  // Parliament Hill
 //        const initialZoom = 1.9;
 //        const initialZoom = fitBounds( [ [-90, -180], [90, 180] ] );
 
@@ -281,7 +282,7 @@ const initialZoom = map2D.getZoom();
         });
 
         // Add sensor icon to centre of 2D map
-        L.marker(mapCentre, {  
+        L.marker(sensorCoords, {  
             icon: receiverIcon
         })
         .bindTooltip(            // Create tooltip
