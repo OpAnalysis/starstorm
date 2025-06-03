@@ -217,11 +217,6 @@
             zoomSnap: 0.1,
             minZoom: initialZoom,
             zoom: initialZoom,
-noWrap: true,
-bounds: [
-    [-90, -180],
-    [90, 180]
-],
             fullscreenControl: true,                            // Add fullscreen control
             fullscreenControlOptions: { position: 'topleft' },  // Configure fullscreen control
         });
@@ -249,6 +244,11 @@ bounds: [
             // Carto Dark Matter (retina)
             L.tileLayer('https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png', {
             	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+noWrap: true,
+bounds: [
+    [-90, -180],
+    [90, 180]
+],
             }).addTo(map2D);
 
 //        //Get projected coordinates of 2D map's centre
