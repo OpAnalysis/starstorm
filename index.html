@@ -429,6 +429,7 @@
                     }
                     var formatted_time = formatted_hour + ':' + formatted_min + ":" + formatted_sec;
 
+                    // Create names array for sensed satellites
                     var sensed_sat_names = [];
                     for (i in msg_sat_visible_ids) {
                         id = msg_sat_visible_ids[i];
@@ -436,6 +437,12 @@
                     }
                     sensed_sat_names.sort();
 
+                    // Create ids array for satellites that were not sensed for which TLEs are available
+                    var satellites_not_sensed_ids[] = '';
+                    for (let k in tles_dict) {     // Iterate over each key in the tles_dict dictionary
+                        if ( !msg_sat_visible_ids.includes(k) ) { satellites_not_sensed_ids.push(k); }
+                    }
+                    
                     // Create the arrays of satellite elevations and azimuths required by sky plot
                     var look_angles_sat_ids = [];
                     var look_angles_elevations = [];
@@ -475,29 +482,12 @@
                     ;
                     populateDiv('leftPanel', leftDivContent);
 
-
                     // From 2D map, delete all satellite markers and ground tracks
                     satelliteMarkerGroup.clearLayers();
                     groundTracksGroup.clearLayers();
 
-                    // On 2D map, create a marker at each satellite's coordinates
+                    // On 2D map, create a marker at each sensed satellite's coordinates
                     addSatelliteMarkers(msg_lat_lon, satelliteSensedIcon, satelliteMarkerGroup);
-//                    for (let key in msg_lat_lon) {      // For each key (satellite ID) in the lat_lon dictionary
-//                        var map_tooltip_lat = msg_lat_lon[key][0];
-//                        var map_tooltip_lon = msg_lat_lon[key][1];
-//                        if ( map_tooltip_lon < -180) { map_tooltip_lon = map_tooltip_lon + 360 };
-//                        L.marker( msg_lat_lon[key], {   
-//                            icon: satelliteSensedIcon,  // Add sensed satellite icon
-//                            zIndexOffset: 999
-//                        }).addTo(satelliteMarkerGroup)
-//                        .bindTooltip(            // Create tooltip
-//                        "<span style='color:#ffffff'>" + satellite_names[key] + "</span><br>" +
-//                            "PRN code: " + key + "<br>" +
-//                            "Latitude: " + map_tooltip_lat.toFixed(1) + "°<br>" +
-//                            "Longitude: " + map_tooltip_lon.toFixed(1) + "°<br>",
-//                            { className: 'satelliteTooltip', direction: 'auto' },
-//                        )
-//                    }
 
 
                     // Plot ground tracks for sensed satellites
@@ -546,13 +536,7 @@
                     break;
 
                 default:   // Do when MQTT message about another topic is received (e.g., TLE)
-//                    console.log('PRN = ', topic.substring(14));
-//                    console.log('Message = ', msg);
                     tles_dict[topic.substring(14)] = msg[topic.substring(14)];  // Update TLEs dictionary with message payload's dictionary value
-//                    satrec_dict[topic.substring(14)] = satellite.twoline2satrec(tles_dict[topic.substring(14)]['line_1'], tles_dict[topic.substring(14)]['line_2']);
-
-
-//                    console.log('Dictionary = ', tles_dict);
             }
         })
 
