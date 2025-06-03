@@ -108,7 +108,10 @@ body {
         margin-right: 0%;
     }
 
-
+    .layerControlItem {
+        color: '#ffffff';
+    }
+    
     .sensorTooltip {
         background-color: #262626;
         color: #b3b300; 
