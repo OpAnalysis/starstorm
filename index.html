@@ -435,7 +435,7 @@
                     // Create ids array for satellites that were not sensed for which TLEs are available
                     var satellites_not_sensed_ids = [];
                     for (let k in tles_dict) {     // Iterate over each key in the tles_dict dictionary
-                        if ( !msg_sat_visible_ids.includes(k) ) { satellites_not_sensed_ids.push(k); }
+                        if ( !msg_sat_visible_ids.includes(k.toString()) ) { satellites_not_sensed_ids.push(k.toString()); }
                     }
 console.log('Satellites not sensed = ' + satellites_not_sensed_ids.toString());
                     
