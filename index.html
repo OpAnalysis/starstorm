@@ -209,7 +209,8 @@
         
         // Specify coordinates at centre of 2D map
         const mapCentre = [45.42452817421958, -75.70070475902422];  // Parliament Hill
-        const initialZoom = 1.9;
+//        const initialZoom = 1.9;
+        const initialZoom = fitWorld();
 
         // Initialize the 2D map on the "map2D" div
         var map2D = L.map('map2D', {
