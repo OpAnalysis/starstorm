@@ -251,7 +251,8 @@
 
         // Add layers to 2D map
         var groundTracksGroup = L.layerGroup().addTo(map2D);     // Layer group for satellite ground tracks
-        var satelliteMarkerGroup = L.layerGroup().addTo(map2D);  // Layer group for satellite markers
+        var sensedSatellitesMarkerGroup = L.layerGroup().addTo(map2D);  // Layer group for sensed satellite markers
+        var notSensedSatellitesMarkerGroup = L.layerGroup().addTo(map2D);  // Layer group for satellite markers that were not sensed
 
         // Define icons for 2D map
         const receiverIcon = L.icon({
@@ -484,11 +485,12 @@
                     populateDiv('leftPanel', leftDivContent);
 
                     // From 2D map, delete all satellite markers and ground tracks
-                    satelliteMarkerGroup.clearLayers();
+                    sensedSatellitesMarkerGroup.clearLayers();
+                    notSensedSatellitesMarkerGroup.clearLayers();
                     groundTracksGroup.clearLayers();
 
                     // On 2D map, create a marker at each sensed satellite's coordinates
-                    addSatelliteMarkers(msg_lat_lon, satelliteSensedIcon, satelliteMarkerGroup);
+                    addSatelliteMarkers(msg_lat_lon, satelliteSensedIcon, sensedSatellitesMarkerGroup);
 
                     // Create a dictionary containing TLE-derived coordinates of all satellites that were not sensed 
                     var not_sensed_lat_lon_dict = [];
@@ -497,10 +499,8 @@
                         const coords_dict = tlejs.getLatLngObj(tle);
                         not_sensed_lat_lon_dict.push( [ coords_dict['lat'], coords_dict['lng'] ] );
                     }
-//console.log("Not sensed lat lon dict = " + not_sensed_lat_lon_dict );
-                    
                     // On 2D map, create a marker at the locaton of each satellite that was not sensed
-                    addSatelliteMarkers(not_sensed_lat_lon_dict, satelliteNotSensedIcon, satelliteMarkerGroup);  
+                    addSatelliteMarkers(not_sensed_lat_lon_dict, satelliteNotSensedIcon, notSensedSatellitesMarkerGroup);  
                     
                     // Plot ground tracks for sensed satellites
                     for (const current_sat_id of msg_sat_visible_ids) {  // For each sensed satellite
@@ -508,11 +508,6 @@
                         // Reconstruct current satellite's TLE from the TLEs dictionary
                         var current_tle = constructTleFromTlesDict(current_sat_id, tles_dict);
 
-//function constructTleFromTlesDict(sat_id, tles_dict){
-//    const tle = tles_dict[sat_id]['header'] + '\n' + tles_dict[sat_id]['line_1'] + '\n' + tles_dict[sat_id]['line_2'];
-//    return tle;
-//}
-                        
                         // Get and plot ground track for current satellite
                         tlejs.getGroundTracks({  // Get ground track for 3 orbits of current satellite
                             tle: current_tle,    // Current satellite's TLE
