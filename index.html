@@ -201,14 +201,9 @@
             }
         }
 
-
-
-
-
-        
         // Specify coordinates at centre of 2D map
         const mapCentre = [45.42452817421958, -75.70070475902422];  // Parliament Hill
-        const initialZoom = 1.9 
+        const initialZoom = 1.9;
 
         // Initialize the 2D map on the "map2D" div
         var map2D = L.map('map2D', {
@@ -438,7 +433,7 @@
                     sensed_sat_names.sort();
 
                     // Create ids array for satellites that were not sensed for which TLEs are available
-                    var satellites_not_sensed_ids[] = '';
+                    var satellites_not_sensed_ids = [];
                     for (let k in tles_dict) {     // Iterate over each key in the tles_dict dictionary
                         if ( !msg_sat_visible_ids.includes(k) ) { satellites_not_sensed_ids.push(k); }
                     }
