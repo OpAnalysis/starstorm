@@ -435,8 +435,10 @@
                     // Create ids array for satellites that were not sensed for which TLEs are available
                     var satellites_not_sensed_ids = [];
                     for (let k in tles_dict) {     // Iterate over each key in the tles_dict dictionary
-                        if ( !msg_sat_visible_ids.includes(k.toString()) ) { satellites_not_sensed_ids.push(k.toString()); }
+                        if ( !msg_sat_visible_ids.includes(k.toString() ) ) { satellites_not_sensed_ids.push(k.toString()); };
+console.log('Satellite ID = ' + k.toString());
                     }
+console.log('Satellites sensed = ' + msg_visible_ids.toString());
 console.log('Satellites not sensed = ' + satellites_not_sensed_ids.toString());
                     
                     // Create the arrays of satellite elevations and azimuths required by sky plot
