@@ -207,8 +207,9 @@
             return tle;
         }
         
-        // Specify coordinates at centre of 2D map
-        const mapCentre = [0, 0];  // Parliament Hill
+        // Specify 2D map parameters
+        const mapBounds = [ [-90, -180], [90, 180] ];
+        const mapCentre = [0, 0];  // Coordinates at centre of map
         const sensorCoords = [45.42452817421958, -75.70070475902422];  // Parliament Hill
 
         // Initialize the 2D map on the "map2D" div
@@ -218,7 +219,8 @@
             fullscreenControl: true,                            // Add fullscreen control
             fullscreenControlOptions: { position: 'topleft' },  // Configure fullscreen control
         });
-        map2D.fitBounds( [ [-90, -180], [90, 180] ], {padding: [0,0]} );     // Zoom to fit entire map
+//        map2D.fitBounds( [ [-90, -180], [90, 180] ], {padding: [0,0]} );     // Zoom to fit entire map
+        map2D.fitBounds( mapBounds, {padding: [0,0]} );     // Zoom to fit entire map
         const initialZoom = map2D.getZoom();                    // Note corresponding zoom level for use when map view is reset
         map2D.setMinZoom( initialZoom );                        // Prevent map from being zoomed out further
         
@@ -246,7 +248,8 @@
             L.tileLayer('https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png', {
             	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
                 noWrap: true,                        // Show only one instance of map
-                bounds: [ [-90, -180], [90, 180] ],  // Show entire map
+//                bounds: [ [-90, -180], [90, 180] ],  // Show entire map
+                bounds: mapBounds,  // Show entire map
             }).addTo(map2D);
 
 //        //Get projected coordinates of 2D map's centre
