@@ -181,6 +181,31 @@
         //                      2D Mercator map
         //----------------------------------------------------------------
 
+        // Function to add a selectedIcon marker for every satellite in lat_lon_dict at that dictionary's coordinates to markerGroup
+        function addSatelliteMarkers(lat_lon_dict, selectedIcon, markerGroup) {
+            for (let key in lat_lon_dict) {      // For each key (satellite ID) in the lat_lon dictionary
+                var map_tooltip_lat = lat_lon_dict[key][0];
+                var map_tooltip_lon = lat_lon_dict[key][1];
+                if ( map_tooltip_lon < -180) { map_tooltip_lon = map_tooltip_lon + 360 };
+                L.marker( lat_lon_dict[key], {   
+                    icon: selectedIcon,  // Add sensed satellite icon
+                    zIndexOffset: 999
+                }).addTo(MarkerGroup)
+                .bindTooltip(            // Create tooltip
+                    "<span style='color:#ffffff'>" + satellite_names[key] + "</span><br>" +
+                    "PRN code: " + key + "<br>" +
+                    "Latitude: " + map_tooltip_lat.toFixed(1) + "°<br>" +
+                    "Longitude: " + map_tooltip_lon.toFixed(1) + "°<br>",
+                    { className: 'satelliteTooltip', direction: 'auto' },
+                )
+            }
+        }
+
+
+
+
+
+        
         // Specify coordinates at centre of 2D map
         const mapCentre = [45.42452817421958, -75.70070475902422];  // Parliament Hill
         const initialZoom = 1.9 
@@ -236,6 +261,12 @@
         });
         const satelliteSensedIcon = L.icon({
                 iconUrl: './ico/satellite - sensed.png',
+                iconSize: [36, 36],
+                iconAnchor: [18, 18],
+                tooltipAnchor: [18, 0]
+        });
+        const satelliteNotSensedIcon = L.icon({
+                iconUrl: './ico/satellite - not sensed.png',
                 iconSize: [36, 36],
                 iconAnchor: [18, 18],
                 tooltipAnchor: [18, 0]
@@ -450,22 +481,23 @@
                     groundTracksGroup.clearLayers();
 
                     // On 2D map, create a marker at each satellite's coordinates
-                    for (let key in msg_lat_lon) {      // For each key (satellite ID) in the lat_lon dictionary
-                        var map_tooltip_lat = msg_lat_lon[key][0];
-                        var map_tooltip_lon = msg_lat_lon[key][1];
-                        if ( map_tooltip_lon < -180) { map_tooltip_lon = map_tooltip_lon + 360 };
-                        L.marker( msg_lat_lon[key], {   
-                            icon: satelliteSensedIcon,  // Add sensed satellite icon
-                            zIndexOffset: 999
-                        }).addTo(satelliteMarkerGroup)
-                        .bindTooltip(            // Create tooltip
-                        "<span style='color:#ffffff'>" + satellite_names[key] + "</span><br>" +
-                            "PRN code: " + key + "<br>" +
-                            "Latitude: " + map_tooltip_lat.toFixed(1) + "°<br>" +
-                            "Longitude: " + map_tooltip_lon.toFixed(1) + "°<br>",
-                            { className: 'satelliteTooltip', direction: 'auto' },
-                        )
-                    }
+                    addSatelliteMarkers(msg_lat_lon, satelliteSensedIcon, satelliteMarkerGroup);
+//                    for (let key in msg_lat_lon) {      // For each key (satellite ID) in the lat_lon dictionary
+//                        var map_tooltip_lat = msg_lat_lon[key][0];
+//                        var map_tooltip_lon = msg_lat_lon[key][1];
+//                        if ( map_tooltip_lon < -180) { map_tooltip_lon = map_tooltip_lon + 360 };
+//                        L.marker( msg_lat_lon[key], {   
+//                            icon: satelliteSensedIcon,  // Add sensed satellite icon
+//                            zIndexOffset: 999
+//                        }).addTo(satelliteMarkerGroup)
+//                        .bindTooltip(            // Create tooltip
+//                        "<span style='color:#ffffff'>" + satellite_names[key] + "</span><br>" +
+//                            "PRN code: " + key + "<br>" +
+//                            "Latitude: " + map_tooltip_lat.toFixed(1) + "°<br>" +
+//                            "Longitude: " + map_tooltip_lon.toFixed(1) + "°<br>",
+//                            { className: 'satelliteTooltip', direction: 'auto' },
+//                        )
+//                    }
 
 
                     // Plot ground tracks for sensed satellites
