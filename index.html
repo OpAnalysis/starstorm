@@ -218,10 +218,14 @@
             minZoom: initialZoom,
             zoom: initialZoom,
 noWrap: true,
+bounds: [
+    [-90, -180],
+    [90, 180]
+],
             fullscreenControl: true,                            // Add fullscreen control
             fullscreenControlOptions: { position: 'topleft' },  // Configure fullscreen control
         });
-map2D.fitWorld();
+//map2D.fitWorld();
         // Add control to reset 2D map view
         L.control.resetView({
             position: "topleft",
