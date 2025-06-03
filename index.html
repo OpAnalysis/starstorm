@@ -201,6 +201,12 @@
             }
         }
 
+        // Function to construct a TLE (as a multiline string) from the associated entry in the TLEs dictionary
+        function constructTleFromTlesDict(sat_id, tles_dict){
+            const tle = tles_dict[sat_id]['header'] + '\n' + tles_dict[sat_id]['line_1'] + '\n' + tles_dict[sat_id]['line_2'];
+            return tle;
+        }
+        
         // Specify coordinates at centre of 2D map
         const mapCentre = [45.42452817421958, -75.70070475902422];  // Parliament Hill
         const initialZoom = 1.9;
@@ -436,10 +442,7 @@
                     var satellites_not_sensed_ids = [];
                     for (let k in tles_dict) {     // Iterate over each key in the tles_dict dictionary
                         if ( !msg_sat_visible_ids.includes(Number(k)) ) { satellites_not_sensed_ids.push(k); };
-//console.log('Current ID = ' + k.toString() + ',  First element = ' + msg_sat_visible_ids[0] + 'Type = ' + typeof msg_sat_visible_ids[0] );
                     }
-console.log('Satellites sensed = ' + msg_sat_visible_ids.toString());
-console.log('Satellites not sensed = ' + satellites_not_sensed_ids.toString());
                     
                     // Create the arrays of satellite elevations and azimuths required by sky plot
                     var look_angles_sat_ids = [];
@@ -487,13 +490,22 @@ console.log('Satellites not sensed = ' + satellites_not_sensed_ids.toString());
                     // On 2D map, create a marker at each sensed satellite's coordinates
                     addSatelliteMarkers(msg_lat_lon, satelliteSensedIcon, satelliteMarkerGroup);
 
-
+                    // On 2D map, create a marker at the locaton of each satellite that was not sensed
+//                  addSatelliteMarkers(XXX, satelliteNotSensedIcon, satelliteMarkerGroup);  
+//satellites_not_sensed_ids
+                    
                     // Plot ground tracks for sensed satellites
                     for (const current_sat_id of msg_sat_visible_ids) {  // For each sensed satellite
                     
                         // Reconstruct current satellite's TLE from the TLEs dictionary
-                        var current_tle = tles_dict[current_sat_id]['header'] + '\n' + tles_dict[current_sat_id]['line_1'] + '\n' + tles_dict[current_sat_id]['line_2'];
+                        var current_tle = constructTleFromTlesDict(current_sat_id, tles_dict);
+//                        var current_tle = tles_dict[current_sat_id]['header'] + '\n' + tles_dict[current_sat_id]['line_1'] + '\n' + tles_dict[current_sat_id]['line_2'];
 
+//function constructTleFromTlesDict(sat_id, tles_dict){
+//    const tle = tles_dict[sat_id]['header'] + '\n' + tles_dict[sat_id]['line_1'] + '\n' + tles_dict[sat_id]['line_2'];
+//    return tle;
+//}
+                        
                         // Get and plot ground track for current satellite
                         tlejs.getGroundTracks({  // Get ground track for 3 orbits of current satellite
                             tle: current_tle,    // Current satellite's TLE
