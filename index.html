@@ -260,7 +260,7 @@
         var notSensedSatellitesMarkerGroup = L.layerGroup().addTo(map2D);  // Layer group for satellite markers that were not sensed
 
 
-//var baseLayers = {
+var baseLayers = {};
 //    "Mapbox": mapbox,
 //    "OpenStreetMap": osm
 //};
@@ -270,7 +270,7 @@ var overlays = {
     "Ground tracks": groundTracksGroup
 };
 
-L.control.layers(overlays).addTo(map2D);
+L.control.layers(baseLayers, overlays).addTo(map2D);
 
 
 
