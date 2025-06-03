@@ -220,7 +220,7 @@
             fullscreenControl: true,                            // Add fullscreen control
             fullscreenControlOptions: { position: 'topleft' },  // Configure fullscreen control
         });
-        map2D.fitBounds( mapBounds, {padding: [0,0]} );     // Zoom to fit entire map
+        map2D.fitBounds( mapBounds, {padding: [0,0]} );         // Zoom to fit entire map
         const initialZoom = map2D.getZoom();                    // Note corresponding zoom level for use when map view is reset
         map2D.setMinZoom( initialZoom );                        // Prevent map from being zoomed out further
         
@@ -261,19 +261,14 @@
 
 
 var baseLayers = {};
-//    "Mapbox": mapbox,
-//    "OpenStreetMap": osm
-//};
-
 var overlays = {
-    'Satellites (sensed)': sensedSatellitesMarkerGroup,
+    '<img src='./ico/satellite - sensed.png' width = 15 /> <span>Satellites (sensed)</span>': sensedSatellitesMarkerGroup,
     'Satellites (not sensed)': notSensedSatellitesMarkerGroup,
     'Ground tracks': groundTracksGroup
 };
-
 L.control.layers(baseLayers, overlays).addTo(map2D);
 
-
+"<img src='Images/purple.jpeg' width = 15 /> <span>Up to $250K</span>"
 
         
         // Define icons for 2D map
