@@ -112,12 +112,6 @@ body {
         color: '#ffffff';
     }
 
-    /* CSS to override layer controller's default Leaflet settings */
-    .leaflet-control-layers-expanded {  
-        background: black;
-/*        color: #ff80ff; */
-    }
-
     .sensorTooltip {
         background-color: #262626;
         color: #b3b300; 
