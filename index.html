@@ -184,10 +184,9 @@
         // Function to add a selectedIcon marker for every satellite in lat_lon_dict at that dictionary's coordinates to markerGroup
         function addSatelliteMarkers(lat_lon_dict, selectedIcon, markerGroup, tooltipType) {
             for (let key in lat_lon_dict) {      // For each key (satellite ID) in the lat_lon dictionary
-if ( lat_lon_dict[key][1] < -180) { lat_lon_dict[key][1] = lat_lon_dict[key][1] + 360 };
+                if ( lat_lon_dict[key][1] < -180) { lat_lon_dict[key][1] = lat_lon_dict[key][1] + 360 };  // If satellite's longitude < -180 then shift it
                 var map_tooltip_lat = lat_lon_dict[key][0];
                 var map_tooltip_lon = lat_lon_dict[key][1];
-//                if ( map_tooltip_lon < -180) { map_tooltip_lon = map_tooltip_lon + 360 };
                 L.marker( lat_lon_dict[key], {   
                     icon: selectedIcon,  // Add sensed satellite icon
                     zIndexOffset: 999
@@ -211,8 +210,6 @@ if ( lat_lon_dict[key][1] < -180) { lat_lon_dict[key][1] = lat_lon_dict[key][1] 
         // Specify coordinates at centre of 2D map
         const mapCentre = [0, 0];  // Parliament Hill
         const sensorCoords = [45.42452817421958, -75.70070475902422];  // Parliament Hill
-//        const initialZoom = 1.9;
-//        const initialZoom = fitBounds( [ [-90, -180], [90, 180] ] );
 
         // Initialize the 2D map on the "map2D" div
         var map2D = L.map('map2D', {
@@ -223,6 +220,7 @@ if ( lat_lon_dict[key][1] < -180) { lat_lon_dict[key][1] = lat_lon_dict[key][1] 
         });
         map2D.fitBounds( [ [-90, -180], [90, 180] ] );          // Zoom to fit entire map
         const initialZoom = map2D.getZoom();                    // Note corresponding zoom level for use when map view is reset
+        map2D.setMinZoom( initialZoom );
         
         // Add control to reset 2D map view
         L.control.resetView({
