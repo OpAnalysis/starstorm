@@ -182,7 +182,7 @@
         //----------------------------------------------------------------
 
         // Function to add a selectedIcon marker for every satellite in lat_lon_dict at that dictionary's coordinates to markerGroup
-        function addSatelliteMarkers(lat_lon_dict, selectedIcon, markerGroup) {
+        function addSatelliteMarkers(lat_lon_dict, selectedIcon, markerGroup, tooltipType) {
             for (let key in lat_lon_dict) {      // For each key (satellite ID) in the lat_lon dictionary
                 var map_tooltip_lat = lat_lon_dict[key][0];
                 var map_tooltip_lon = lat_lon_dict[key][1];
@@ -196,7 +196,7 @@
                     "PRN code: " + key + "<br>" +
                     "Latitude: " + map_tooltip_lat.toFixed(1) + "°<br>" +
                     "Longitude: " + map_tooltip_lon.toFixed(1) + "°<br>",
-                    { className: 'satelliteTooltip', direction: 'auto' },
+                    { className: 'tooltipType', direction: 'auto' },
                 )
             }
         }
@@ -490,7 +490,7 @@
                     groundTracksGroup.clearLayers();
 
                     // On 2D map, create a marker at each sensed satellite's coordinates
-                    addSatelliteMarkers(msg_lat_lon, satelliteSensedIcon, sensedSatellitesMarkerGroup);
+                    addSatelliteMarkers(msg_lat_lon, satelliteSensedIcon, sensedSatellitesMarkerGroup, sensedSatelliteTooltip);
 
                     // Create a dictionary containing TLE-derived coordinates of all satellites that were not sensed 
                     var not_sensed_lat_lon_dict = [];
@@ -500,7 +500,7 @@
                         not_sensed_lat_lon_dict.push( [ coords_dict['lat'], coords_dict['lng'] ] );
                     }
                     // On 2D map, create a marker at the locaton of each satellite that was not sensed
-                    addSatelliteMarkers(not_sensed_lat_lon_dict, satelliteNotSensedIcon, notSensedSatellitesMarkerGroup);  
+                    addSatelliteMarkers(not_sensed_lat_lon_dict, satelliteNotSensedIcon, notSensedSatellitesMarkerGroup, notSensedSatelliteTooltip);  
                     
                     // Plot ground tracks for sensed satellites
                     for (const current_sat_id of msg_sat_visible_ids) {  // For each sensed satellite
