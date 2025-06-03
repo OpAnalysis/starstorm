@@ -128,7 +128,7 @@ body {
     }
 
 
-    .satelliteTooltip {
+    .sensedSatelliteTooltip {
         background-color: #262626;
         color: #b3b300; 
         border: 2px solid cyan;
@@ -140,6 +140,20 @@ body {
     }
     .leaflet-tooltip-right.satelliteTooltip:before {
         border-right-color: cyan;
+    }
+
+    .notSensedSatelliteTooltip {
+        background-color: #262626;
+        color: #b3b300; 
+        border: 2px solid '#404040';
+        font-family: Cloud;
+        font-size: 14;
+    }
+    .leaflet-tooltip-left.satelliteTooltip:before {
+        border-left-color: '#404040';
+    }
+    .leaflet-tooltip-right.satelliteTooltip:before {
+        border-right-color: '#404040';
     }
 
     .hovertext {
