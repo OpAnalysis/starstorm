@@ -218,9 +218,9 @@
             fullscreenControl: true,                            // Add fullscreen control
             fullscreenControlOptions: { position: 'topleft' },  // Configure fullscreen control
         });
-        map2D.fitBounds( [ [-90, -180], [90, 180] ] );          // Zoom to fit entire map
+        map2D.fitBounds( [ [-90, -180], [90, 180] ], {padding: [0,0]} );     // Zoom to fit entire map
         const initialZoom = map2D.getZoom();                    // Note corresponding zoom level for use when map view is reset
-        map2D.setMinZoom( initialZoom );
+        map2D.setMinZoom( initialZoom );                        // Prevent map from being zoomed out further
         
         // Add control to reset 2D map view
         L.control.resetView({
