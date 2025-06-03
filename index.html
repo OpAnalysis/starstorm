@@ -497,10 +497,10 @@
                         const coords_dict = tlejs.getLatLngObj(tle);
                         not_sensed_lat_lon_dict.push( [ coords_dict['lat'], coords_dict['lng'] ] );
                     }
-console.log("Not sensed lat lon dict = " + not_sensed_lat_lon_dict );
+//console.log("Not sensed lat lon dict = " + not_sensed_lat_lon_dict );
                     
                     // On 2D map, create a marker at the locaton of each satellite that was not sensed
-//                    addSatelliteMarkers(XXX, satelliteNotSensedIcon, satelliteMarkerGroup);  
+                    addSatelliteMarkers(not_sensed_lat_lon_dict, satelliteNotSensedIcon, satelliteMarkerGroup);  
                     
                     // Plot ground tracks for sensed satellites
                     for (const current_sat_id of msg_sat_visible_ids) {  // For each sensed satellite
