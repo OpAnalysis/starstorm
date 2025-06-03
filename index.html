@@ -308,7 +308,8 @@
 
         function createSkyplot(data, targetDiv) {
             const layout = {
-                title: '<span style="font-family:Cloud; shadow:black"><span style="color:#ffffff">  AZIMUTH</span>  <span style="color:#00cccc">vs.</span> <span style="color:#ff80ff">ELEVATION</span></span>',
+//                title: '<span style="font-family:Cloud; shadow:black"><span style="color:#ffffff">  AZIMUTH</span>  <span style="color:#00cccc">vs.</span> <span style="color:#ff80ff">ELEVATION</span></span>',
+                title: '<span style="font-family:Cloud; shadow:black"> <span style="color:#00cccc"></b>SKY PLOT</b></span> <br> <span style="color:#ffffff">  AZIMUTH</span>  <br> <span style="color:#00cccc">vs.</span> <span style="color:#ff80ff">ELEVATION</span></span>',
                 paper_bgcolor: '#262626',
                 autosize: true,
                 dragmode: false,
@@ -435,9 +436,6 @@
                     }
                     var formatted_time = formatted_hour + ':' + formatted_min + ":" + formatted_sec;
 
-// In dictionary of sensed satellite coordinates, correct any longitude values that are < -180 degrees
-
-                    
                     // Create names array for sensed satellites
                     var sensed_sat_names = [];
                     for (i in msg_sat_visible_ids) {
