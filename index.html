@@ -209,7 +209,8 @@
         
         // Specify coordinates at centre of 2D map
         const mapCentre = [45.42452817421958, -75.70070475902422];  // Parliament Hill
-        const initialZoom = 1.9;
+//        const initialZoom = 1.9;
+        const initialZoom = fitBounds( [ [-90, -180], [90, 180] ] );
 
         // Initialize the 2D map on the "map2D" div
         var map2D = L.map('map2D', {
@@ -220,7 +221,7 @@
             fullscreenControl: true,                            // Add fullscreen control
             fullscreenControlOptions: { position: 'topleft' },  // Configure fullscreen control
         });
-//map2D.fitWorld();
+
         // Add control to reset 2D map view
         L.control.resetView({
             position: "topleft",
@@ -244,11 +245,8 @@
             // Carto Dark Matter (retina)
             L.tileLayer('https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png', {
             	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-noWrap: true,
-bounds: [
-    [-90, -180],
-    [90, 180]
-],
+                noWrap: true,                        // Show only one instance of map
+                bounds: [ [-90, -180], [90, 180] ],  // Show entire map
             }).addTo(map2D);
 
 //        //Get projected coordinates of 2D map's centre
