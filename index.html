@@ -259,6 +259,22 @@
         var sensedSatellitesMarkerGroup = L.layerGroup().addTo(map2D);  // Layer group for sensed satellite markers
         var notSensedSatellitesMarkerGroup = L.layerGroup().addTo(map2D);  // Layer group for satellite markers that were not sensed
 
+
+//var baseLayers = {
+//    "Mapbox": mapbox,
+//    "OpenStreetMap": osm
+//};
+
+var overlays = {
+    "Satellites (sensed)": sensedSatellitesMarkerGroup,
+    "Ground tracks": groundTracksGroup
+};
+
+L.control.layers(overlays).addTo(map2D);
+
+
+
+        
         // Define icons for 2D map
         const receiverIcon = L.icon({
                 iconUrl: './ico/receiver.png',
