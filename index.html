@@ -31,6 +31,10 @@
     <!-- Load leaflet-textpath -->
     <script src="https://cdn.jsdelivr.net/npm/leaflet-textpath@1.2.3/leaflet.textpath.min.js"></script>
  
+ <!-- Load leaflet-panel-layers -->
+ <link rel="stylesheet" href="./css/leaflet-panel-layers.min">
+ <script src="./js/leaflet-panel-layers.min.js"></script>
+    
     <!-- Load Plotly -->
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 
@@ -49,6 +53,7 @@
     <!-- Import tle.js -->
     <script src="./js/tlejs.umd.js"></script>
 
+    
 </head>
 
     
@@ -294,6 +299,30 @@
 
         // Initialize dictionaries to hold TLE data
         let tles_dict = {};
+
+
+
+
+
+var panelLayers = new L.Control.PanelLayers(baseLayers, overLayers, {
+	//compact: true,
+	//collapsed: true,
+	selectorGroup: true,
+	collapsibleGroups: true
+});
+
+map.addControl(panelLayers);
+
+
+
+
+
+
+
+
+
+
+
 
         
         //------------------------------------------------------------------------
