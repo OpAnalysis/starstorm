@@ -1,7 +1,5 @@
 @keyframes upDown 
 {
-/*    to { transform: translatey(calc(1px * 5 * var(--vh_in_px)));} */
-/*    to{ transform: translatey(100%); } */
     to{ transform: translatey(130%); }
 }
 
@@ -65,7 +63,7 @@ body {
         left: 0;
         height: 36px;
         width: 36px;
-        animation: upDown 60s alternate infinite ease-in-out;
+        animation: upDown 30s alternate infinite ease-in-out;
     }
 
     .leftPanel {
