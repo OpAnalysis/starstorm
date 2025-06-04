@@ -235,7 +235,7 @@
             " <img src='./ico/satellite - not sensed.png' width = 24 /> <span> Satellites (modelled)</span>": notSensedSatellitesMarkerGroup,
             " Ground tracks (modelled)": groundTracksGroup
         };
-        L.control.layers(baseLayers, overlays, 'collapsed': false).addTo(map2D);
+        L.control.layers(baseLayers, overlays, { collapsed: false }).addTo(map2D);
         
         // Define icons for 2D map
         const receiverIcon = L.icon({
