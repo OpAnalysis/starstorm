@@ -279,8 +279,8 @@
 var baseLayers = {};
 var overlays = {
     " <img src='./ico/satellite - sensed.png' width = 24 /> <span> Satellites (sensed)</span>": sensedSatellitesMarkerGroup,
-    " <img src='./ico/satellite - not sensed.png' width = 24 /> <span> Satellites (not sensed)</span>": notSensedSatellitesMarkerGroup,
-    " Ground tracks": groundTracksGroup
+    " <img src='./ico/satellite - not sensed.png' width = 24 /> <span> Satellites (modelled)</span>": notSensedSatellitesMarkerGroup,
+    " Ground tracks (modelled)": groundTracksGroup
 };
 L.control.layers(baseLayers, overlays).addTo(map2D);
 
