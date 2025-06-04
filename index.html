@@ -232,8 +232,8 @@
         var baseLayers = {};
         var overlays = {
             " <img src='./ico/satellite - sensed.png' width = 24 /> <span> Satellites (sensed)</span>": sensedSatellitesMarkerGroup,
-            " <img src='./ico/satellite - not sensed.png' width = 24 /> <span> Satellites (modelled)</span>": notSensedSatellitesMarkerGroup,
-            " Ground tracks (modelled)": groundTracksGroup
+            " <img src='./ico/satellite - not sensed.png' width = 24 /> <span> Satellites (computed)</span>": notSensedSatellitesMarkerGroup,
+            " Ground tracks (computed)": groundTracksGroup
         };
         L.control.layers(baseLayers, overlays, { collapsed: false }).addTo(map2D);
         
@@ -289,7 +289,7 @@
 //                title: '<span style="font-family:Cloud; shadow:black"> <span style="font-size:24px; line-height:1.2; color:#00cccc"><b> SKY PLOT <br> OF <br> SENSED SATELLITES <br> </b></span> <br>' +
                 title: '<span style="font-family:Cloud; shadow:black">' + 
                             '<span style="font-size:24px; line-height:1.2; color:#00cccc"><b> SKY PLOT </b><br></span>' +
-                            '<span style="font-size:18px; line-height:1.2; color:#00cccc"><b> OF </b><br></span>' +
+                            '<span style="font-size:18px; line-height:2; color:#00cccc"><b> OF </b><br></span>' +
                             '<span style="font-size:24px; line-height:1.2; color:#00cccc"><b> SENSED SATELLITES </b><br></span>' +
                             '<br>' +
                             '<span style="color:#ffffff">AZIMUTH</span> <br>' + 
