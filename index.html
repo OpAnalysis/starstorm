@@ -455,7 +455,7 @@
                     var test1 = "sea";
                     var test2 = "food";
                     for (let i in sensed_sat_names) {
-                        sat_name_rows += '<div class="row" style="color:' + leftDivValueColor + '">' + sensed_sat_names[i].toString() + '</div>';
+                        sat_name_rows += '<div class="row" style="color:' + leftDivValueColor2 + '">' + sensed_sat_names[i].toString() + '</div>';
                     };
 
                     var leftDivContent = 
@@ -470,7 +470,7 @@
                         '<div class="row" style="color:' + leftDivValueColor2 + '">' + msg_sat_visible_ids.length + '</div>' +
                         '<div class="row"><br></div>' +
                         '<div class="row" style="color:' + leftDivHeadingColor + '"><b>SENSED SATELLITES</b><br></div>' +
-                        '<span style="color:' + leftDivValueColor2 + '">' + sat_name_rows + '</span>'
+                        sat_name_rows;
                     ;
                     populateDiv('leftPanel', leftDivContent);
 
