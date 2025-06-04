@@ -85,30 +85,7 @@
         </div>
         <div class="row">  <!-- Sensor data row -->
             <div id='leftPanel' class='leftPanel d-flex align-items-center justify-content-center'></div>  <!-- Left panel div -->
-<!--            <div id='skyPlot' class='skyPlot d-flex align-items-center justify-content-center'></div>  <!-- Azimuth vs. elevation sky map div -->
-
-            
-            <div id='skyPlot' class='skyPlot d-flex align-items-center justify-content-center'>  <!-- Azimuth vs. elevation sky map div -->
-
-                <div class="row">
-                    <div id='titleRow' class='titleRow d-flex align-items-center justify-content-center' >  <!-- Title row -->
-                        <center>Title row</center>
-                    </div>
-                </div>
-                <div class="row">
-                    <div id='skyPlotRow' class='skyPlotRow d-flex align-items-center justify-content-center'>  <!-- Plot row -->
-                    </div>
-                </div>
-                <div class="row">
-                    <div id='explanationRow' class='explanationRow d-flex align-items-center justify-content-center'>  <!-- Explanation row -->
-                        <center>Explanation row</center>
-                    </div>
-                </div>
-            </div>
-
-            
-            
-            
+            <div id='skyPlot' class='skyPlot d-flex align-items-center justify-content-center'></div>  <!-- Azimuth vs. elevation sky map div -->
             <div id='map2D' class='map2D d-flex align-items-center justify-content-center'></div>    <!-- 2D Mercator map div -->
         </div>
     </div>
@@ -592,12 +569,10 @@
                     }]
 
                     // Generate sky plot
-//                    createSkyplot(skyPlotData, skyPlot);
-                    createSkyplot(skyPlotData, skyPlotRow);
+                    createSkyplot(skyPlotData, skyPlot);
 
                     // Resize sky plot to fit the dimensions of its div
-//                    resizePlot('skyPlot');
-                    resizePlot('skyPlotRow');
+                    resizePlot('skyPlot');
 
                     break;
 
