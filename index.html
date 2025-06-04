@@ -290,8 +290,7 @@
                 title: '<span style="font-family:Cloud; shadow:black">' + 
                             '<span style="font-size:24px; line-height:1.2; color:#00cccc"><b> SKY PLOT </b><br></span>' +
                             '<span style="font-size:18px; line-height:2; color:#00cccc"><b> OF </b><br></span>' +
-                            '<span style="font-size:24px; line-height:1.2; color:#00cccc"><b> SENSED SATELLITES </b><br></span>' +
-                            '<br>' +
+                            '<span style="font-size:24px; line-height:1.2; color:#00cccc"><b> SENSED SATELLITES </b></span>' +
 //                            '<span style="font-size:14px; color:#ffffff">' +
 //                                'Each sensed satellite is represented in the plot by a circular marker.<br>' +
 //                                'The direction from the sensor to each sensed satellite is plotted in<br>' +
@@ -303,7 +302,6 @@
 //                                'A satellite with an elevation of 0° appears on the horizon. Conversely,<br>' +
 //                                'a satellite with a 90° elevation is located directly above the sensor.<br>' +
 //                            '</span> <br>' + 
-                            '<span style="color:#ff80ff">ELEVATION</span>' +
                     '</span>',
                 paper_bgcolor: '#262626',
                 autosize: true,
@@ -344,7 +342,7 @@
                 annotations: [
                     {
                         x: 0.5,
-                        y: -0.2,
+                        y: -0.1,
                         xref: 'paper',
                         yref: 'paper',
                         text: 'Each sensed satellite is represented in the plot by a circular marker.<br>' +
