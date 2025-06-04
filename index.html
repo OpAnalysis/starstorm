@@ -85,7 +85,24 @@
         </div>
         <div class="row">  <!-- Sensor data row -->
             <div id='leftPanel' class='leftPanel d-flex align-items-center justify-content-center'></div>  <!-- Left panel div -->
-            <div id='skyPlot' class='skyPlot d-flex align-items-center justify-content-center'></div>  <!-- Azimuth vs. elevation sky map div -->
+<!--            <div id='skyPlot' class='skyPlot d-flex align-items-center justify-content-center'></div>  <!-- Azimuth vs. elevation sky map div -->
+
+            
+            <div id='skyPlot' class='skyPlot d-flex align-items-center justify-content-center'>  <!-- Azimuth vs. elevation sky map div -->
+                <div class="row">  <!-- Title row -->
+                    Title row
+                <div>
+                <div id='skyPlotRow class="row" class='skyPlot d-flex align-items-center justify-content-center'>  <!-- Plot row -->
+                    
+                <div>
+                <div class="row">  <!-- Explanation row -->
+                    Explanation row
+                <div>
+            </div>
+
+            
+            
+            
             <div id='map2D' class='map2D d-flex align-items-center justify-content-center'></div>    <!-- 2D Mercator map div -->
         </div>
     </div>
@@ -572,7 +589,8 @@
                     }]
 
                     // Generate sky plot
-                    createSkyplot(skyPlotData, skyPlot);
+//                    createSkyplot(skyPlotData, skyPlot);
+                    createSkyplot(skyPlotData, skyPlotRow);
 
                     // Resize sky plot to fit the dimensions of its div
                     resizePlot('skyPlot');
