@@ -222,10 +222,10 @@
                 bounds: mapBounds,  // Show entire map
             }).addTo(map2D);
 
-        // Add layers to 2D map
-        var groundTracksGroup = L.layerGroup().addTo(map2D);     // Layer group for satellite ground tracks
+        // Initiate layers and add some to 2D map
         var sensedSatellitesMarkerGroup = L.layerGroup().addTo(map2D);  // Layer group for sensed satellite markers
         var notSensedSatellitesMarkerGroup = L.layerGroup().addTo(map2D);  // Layer group for satellite markers that were not sensed
+        var groundTracksGroup = L.layerGroup();     // Layer group for satellite ground tracks
 
         // Add layer controller
         var baseLayers = {};
