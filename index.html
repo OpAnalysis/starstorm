@@ -264,8 +264,10 @@
         .bindTooltip(            // Create tooltip
             "<span style='color:#ffffff'><center>SENSOR</center>" +
             "Location: Ottawa<br>" +
+            "<span color:'#ff80ff'>" +
             "Latitude: " + mapCentre[0].toFixed(1).toString() + "°<br>" +
-            "Longitude: " + mapCentre[1].toFixed(1).toString() + "°<br>",
+            "Longitude: " + mapCentre[1].toFixed(1).toString() + "°<br>" +
+            "</span>",
             { className: 'sensorTooltip', direction: 'top' },
         )
         .addTo(map2D)
