@@ -447,8 +447,9 @@
                     // Populate left panel
 //                    var leftDivHeadingColor = '#00ffff';
 //                    var leftDivValueColor = '#ff33ff';
-                    var leftDivHeadingColor = '#ff33ff';
-                    var leftDivValueColor = '#00ffff';
+                    var leftDivHeadingColor = '#ffffff';
+                    var leftDivValueColor1 = '#ff33ff';
+                    var leftDivValueColor2 = '#00ffff';
 
                     var sat_name_rows = ""
                     var test1 = "sea";
@@ -459,17 +460,17 @@
 
                     var leftDivContent = 
                         '<div class="row" style="color:' + leftDivHeadingColor + '"><b>SENSOR LOCATION</b><br></div>' +
-                        '<div class="row" style="color:' + leftDivValueColor + '">OTTAWA<br>ONTARIO<br>CANADA</div>' +
+                        '<div class="row" style="color:' + leftDivValueColor1 + '">OTTAWA<br>ONTARIO<br>CANADA</div>' +
                         '<div class="row"><br></div>' +
                         '<div class="row" style="color:' + leftDivHeadingColor + '"><b>SENSOR TIMESTAMP</b><br></div>' +
-                        '<div class="row" style="color:' + leftDivValueColor + '">' + msg_date_dmy + '</div>' +
-                        '<div class="row" style="color:' + leftDivValueColor + '">' + formatted_time + ' UTC</div>' +
+                        '<div class="row" style="color:' + leftDivValueColor1 + '">' + msg_date_dmy + '</div>' +
+                        '<div class="row" style="color:' + leftDivValueColor1 + '">' + formatted_time + ' UTC</div>' +
                         '<div class="row"><br></div>' +
                         '<div class="row" style="color:' + leftDivHeadingColor + '"><b>SATELLITES SENSED</b><br></div>' +
-                        '<div class="row" style="color:' + leftDivValueColor + '">' + msg_sat_visible_ids.length + '</div>' +
+                        '<div class="row" style="color:' + leftDivValueColor2 + '">' + msg_sat_visible_ids.length + '</div>' +
                         '<div class="row"><br></div>' +
                         '<div class="row" style="color:' + leftDivHeadingColor + '"><b>SENSED SATELLITES</b><br></div>' +
-                        '<span style="color:' + leftDivValueColor + '">' + sat_name_rows + '</span>'
+                        '<span style="color:' + leftDivValueColor2 + '">' + sat_name_rows + '</span>'
                     ;
                     populateDiv('leftPanel', leftDivContent);
 
