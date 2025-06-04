@@ -341,7 +341,24 @@
                         tickfont: {color: angular_label_color, family: skyplot_font, size: 14, shadow: 'black'},
                     },
                 },
-                    showlegend: false,
+                annotations: [
+                    {
+                        x: 0.5,
+                        y: -0.2,
+                        xref: 'paper',
+                        yref: 'paper',
+                        text: 'This is a text box below the chart',
+                        showarrow: false,
+                        font: {
+                            size: 14,
+                            color: 'black'
+                        },
+                        bgcolor: 'lightgray',
+                        bordercolor: 'gray',
+                        borderwidth: 1
+                    }
+                ],
+                showlegend: false,
             };
             const configPlotly = {
               responsive: true,
