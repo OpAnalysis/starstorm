@@ -286,9 +286,13 @@
 
         function createSkyplot(data, targetDiv) {
             const layout = {
-                title: '<span style="font-family:Cloud; shadow:black"> <span style="font-size:24px; line-height:1.2; color:#00cccc"><b> SKY PLOT <br> OF <br> SENSED SATELLITES <br> </b></span> <br>' +
-                       '<span style="color:#ffffff">  AZIMUTH</span>  <br>' + 
-                       '<span style="color:#ff80ff">ELEVATION</span></span>',
+//                title: '<span style="font-family:Cloud; shadow:black"> <span style="font-size:24px; line-height:1.2; color:#00cccc"><b> SKY PLOT <br> OF <br> SENSED SATELLITES <br> </b></span> <br>' +
+                title: '<span style="font-family:Cloud; shadow:black"> <span style="font-size:24px; line-height:1.2; color:#00cccc"><b> SKY PLOT <br>' +
+                    'OF <br>' +
+                    'SENSED SATELLITES <br> </b></span>' +
+                    '<br>' +
+                    '<span style="color:#ffffff">  AZIMUTH</span>  <br>' + 
+                    '<span style="color:#ff80ff">ELEVATION</span></span>',
                 paper_bgcolor: '#262626',
                 autosize: true,
                 dragmode: false,
