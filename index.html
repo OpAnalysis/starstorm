@@ -303,9 +303,9 @@
 //                                'a satellite with a 90° elevation is located directly above the sensor.<br>' +
 //                            '</span> <br>' + 
                     '</span>',
-  margin: {
-    b: 100 // Adjust this value to shift the plot downward
-  },
+//  margin: {
+//    b: 100 // Adjust this value to shift the plot downward
+//  },
                 paper_bgcolor: '#262626',
                 autosize: true,
                 dragmode: false,
@@ -342,33 +342,33 @@
                         tickfont: {color: angular_label_color, family: skyplot_font, size: 14, shadow: 'black'},
                     },
                 },
-                annotations: [
-                    {
-                        x: 0.5,
-                        y: -0.2,
-                        xref: 'paper',
-                        yref: 'paper',
-                        yanchor: 'bottom',
-                        align: 'center',
-                        text: 'Each sensed satellite is represented in the plot by a circular marker. <br>' +
-                            'The direction from the sensor to each sensed satellite is plotted in <br>' +
-                            'terms of two "look angles", i.e., azimuth and elevation. <br>' +
-                            'Azimuth increases clockwise in the plot, from 0° to 360°. <br>' +
-                            'Azimuth values of 0°, 90°, 180°, and 270° respectively denote satellites <br>' +
-                            'located to the north, east, south, and west of the sensor. <br>' +
-                            "Elevation increases from 0° at the plot's edge to 90° at its centre. <br>" +
-                            'A satellite with an elevation of 0° appears on the horizon. <br>' +
-                            'Conversely, a satellite with a 90° elevation is located directly above the sensor.',
-                        showarrow: false,
-                        font: {
-                            size: 12,
-                            color: '#ffffff'
-                        },
-                        bgcolor: '#262626',
-                        bordercolor: '#262626',
-                        borderwidth: 0
-                    }
-                ],
+//                annotations: [
+//                    {
+//                        x: 0.5,
+//                        y: -0.2,
+//                        xref: 'paper',
+//                        yref: 'paper',
+//                        yanchor: 'bottom',
+//                        align: 'center',
+//                        text: 'Each sensed satellite is represented in the plot by a circular marker. <br>' +
+//                            'The direction from the sensor to each sensed satellite is plotted in <br>' +
+//                            'terms of two "look angles", i.e., azimuth and elevation. <br>' +
+//                            'Azimuth increases clockwise in the plot, from 0° to 360°. <br>' +
+//                            'Azimuth values of 0°, 90°, 180°, and 270° respectively denote satellites <br>' +
+//                            'located to the north, east, south, and west of the sensor. <br>' +
+//                            "Elevation increases from 0° at the plot's edge to 90° at its centre. <br>" +
+//                            'A satellite with an elevation of 0° appears on the horizon. <br>' +
+//                            'Conversely, a satellite with a 90° elevation is located directly above the sensor.',
+//                        showarrow: false,
+//                        font: {
+//                            size: 12,
+//                            color: '#ffffff'
+//                        },
+//                        bgcolor: '#262626',
+//                        bordercolor: '#262626',
+//                        borderwidth: 0
+//                    }
+//                ],
                 showlegend: false,
             };
             const configPlotly = {
