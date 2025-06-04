@@ -138,8 +138,6 @@
         //----------------------------------------------------------------
 
             var topDivContent = 
-//                '<p><strong>STARSTORM</strong><br><span style="font-size:24px">Sensor Technology Accessed Remotely for Satellite Tracking Online via Real-time Mapping</p></span>'
-//                '<p><span style="font-size:60px" color="#ffffff"><strong> STARSTORM </strong><br></span>' +
                 '<p><span style="font-size:60px; color:#ffffff"><strong> STARSTORM </strong><br></span>' +
                 '<span style="font-size:24px">Sensor Technology Accessed Remotely for Satellite Tracking Online via Real-time Mapping</p></span>'
             ;
@@ -290,7 +288,10 @@
         function createSkyplot(data, targetDiv) {
             const layout = {
 //                title: '<span style="font-family:Cloud; shadow:black"><span style="color:#ffffff">  AZIMUTH</span>  <span style="color:#00cccc">vs.</span> <span style="color:#ff80ff">ELEVATION</span></span>',
-                title: '<span style="font-family:Cloud; shadow:black"> <span style="color:#00cccc"><b> SKY PLOT </b></span> <br> <span style="color:#ffffff">  AZIMUTH</span>  <br> <span style="color:#ff80ff">ELEVATION</span></span>',
+//                title: '<span style="font-family:Cloud; shadow:black"> <span style="color:#00cccc"><b> SKY PLOT </b></span> <br> <span style="color:#ffffff">  AZIMUTH</span>  <br> <span style="color:#ff80ff">ELEVATION</span></span>',
+                title: '<span style="font-family:Cloud; shadow:black"> <span style="color:#00cccc"><strong> SKY PLOT </strong></span> <br>' +
+                       '<span style="color:#ffffff">  AZIMUTH</span>  <br>' + 
+                       '<span style="color:#ff80ff">ELEVATION</span></span>',
                 paper_bgcolor: '#262626',
                 autosize: true,
                 dragmode: false,
