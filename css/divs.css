@@ -97,6 +97,30 @@ body {
         font-family: "Cloud";
     }
 
+
+    
+
+
+    .titleRow {
+        position: relative;
+        height: 10vh;
+    }
+
+    .skyPlotRow {
+        position: relative;
+        height: 50vh;  
+        
+    }
+
+    .explanationRow {
+        position: relative;
+    }
+
+
+
+    
+
+    
     .map2D {
         position: relative;
         background-color: #262626;
