@@ -445,8 +445,10 @@
                     };
 
                     // Populate left panel
-                    var leftDivHeadingColor = '#00ffff';
-                    var leftDivValueColor = '#ff33ff';
+//                    var leftDivHeadingColor = '#00ffff';
+//                    var leftDivValueColor = '#ff33ff';
+                    var leftDivHeadingColor = '#ff33ff';
+                    var leftDivValueColor = '#00ffff';
 
                     var sat_name_rows = ""
                     var test1 = "sea";
@@ -467,7 +469,7 @@
                         '<div class="row" style="color:' + leftDivValueColor + '">' + msg_sat_visible_ids.length + '</div>' +
                         '<div class="row"><br></div>' +
                         '<div class="row" style="color:' + leftDivHeadingColor + '"><b>SENSED SATELLITES</b><br></div>' +
-                        sat_name_rows
+                        '<span style="color:' + leftDivValueColor + '">' + sat_name_rows + '</span>'
                     ;
                     populateDiv('leftPanel', leftDivContent);
 
