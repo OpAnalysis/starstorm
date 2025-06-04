@@ -284,6 +284,17 @@
         const radial_grid_color = '#ff33ff'
         const skyplot_font = 'Cloud'
 
+        const skyPlotPopupContents = 'Each sensed satellite is represented in the plot by a circular marker.<br>' +
+                                        'The direction from the sensor to each sensed satellite is plotted in<br>' +
+                                        'terms of two "look angles", i.e., azimuth and elevation.<br>' +
+                                        'Azimuth increases clockwise in the plot, from 0° to 360°.<br>' +
+                                        'Azimuth values of 0°, 90°, 180°, and 270° respectively denote satellites<br>' +
+                                        'located to the north, east, south, and west of the sensor.<br>' +
+                                        "Elevation increases from 0° at the plot's edge to 90° at its centre.<br>" +
+                                        'A satellite with an elevation of 0° appears on the horizon. Conversely,<br>' +
+                                        'a satellite with a 90° elevation is located directly above the sensor.'
+
+            
         function createSkyplot(data, targetDiv) {
             const layout = {
 //                title: '<span style="font-family:Cloud; shadow:black"> <span style="font-size:24px; line-height:1.2; color:#00cccc"><b> SKY PLOT <br> OF <br> SENSED SATELLITES <br> </b></span> <br>' +
@@ -353,7 +364,8 @@
                         method: 'restyle',
                         args: [],
                         click: function() {
-                            window.open('popup.html', 'Enter popup window contents here', 'width=600,height=400');
+//                            window.open('popup.html', 'popup', 'width=600,height=400');
+                            window.open(skyPlotPopupContents, 'popup', 'width=600,height=400');
                         }
                     }]
                 }],
