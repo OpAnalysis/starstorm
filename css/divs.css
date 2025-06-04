@@ -111,8 +111,7 @@ body {
 
     .sensorTooltip {
         background-color: #262626;
-/*        color: #b3b300;
-*/        color: #ff80ff;
+        color: #ff80ff;
         border: 2px solid #ff80ff;
         font-family: Cloud;
         font-size: 14;
