@@ -160,12 +160,6 @@
                 if ( lat_lon_dict[key][1] < -180) { lat_lon_dict[key][1] = lat_lon_dict[key][1] + 360 };  // If satellite's longitude < -180 then shift it
                 var map_tooltip_lat = lat_lon_dict[key][0];
                 var map_tooltip_lon = lat_lon_dict[key][1];
-
-console.log('Key = ' + key + ' , Type of key = ' + typeof key);
-console.log('lat_lon_dict[key][0] = ' + lat_lon_dict[key][0] + ' , Tyoe of = ' + typeof lat_lon_dict[key][0] );
-console.log('Map_tooltip_lat = ' + map_tooltip_lat);
-console.log('Type of Map_tooltip_lat = ' + typeof map_tooltip_lat);
-                
                 L.marker( lat_lon_dict[key], {   
                     icon: selectedIcon,  // Add sensed satellite icon
                     zIndexOffset: 999
@@ -303,7 +297,6 @@ console.log('Type of Map_tooltip_lat = ' + typeof map_tooltip_lat);
             
         function createSkyplot(data, targetDiv) {
             const layout = {
-//                title: '<span style="font-family:Cloud; shadow:black; font-size:24px; line-height:1.5"><span style="color:#00cccc"><b>SENSED SATELLITES:<br></span><span style="color:#ffffff">AZIMUTH (0°-360°) &</span><span style="color:#ff80ff"><br>ELEVATION (0°-90°)</b></span></span>', 
                 title: '<span style="font-family:Cloud; font-size: 24; shadow:black; color:#00cccc"><b>SENSED SATELLITES:</b></span><br><br>' +
                         '<span style="font-family:Cloud; font-size: 24; shadow:black; color:#ffffff">AZIMUTH (0°-360°) &</span><br><br>' +
                         '<span style="font-family:Cloud; font-size: 24; shadow:black; color:#ff80ff">ELEVATION (0°-90°)</span>' + 
@@ -447,7 +440,6 @@ console.log('Type of Map_tooltip_lat = ' + typeof map_tooltip_lat);
                     for (let k in tles_dict) {     // Iterate over each key in the tles_dict dictionary
                         if ( !msg_sat_visible_ids.includes(Number(k)) ) { satellites_not_sensed_ids.push(k); };
                     }
-console.log('Not sensed = ' + satellites_not_sensed_ids.toString());
                     
                     // Create the arrays of satellite elevations and azimuths required by sky plot
                     var look_angles_sat_ids = [];
@@ -497,28 +489,16 @@ console.log('Not sensed = ' + satellites_not_sensed_ids.toString());
                     notSensedSatellitesMarkerGroup.clearLayers();
                     groundTracksGroup.clearLayers();
 
-//console.log('Msg_lat_lon = ' + msg_lat_lon.toString());
-                    
                     // On 2D map, create a marker at each sensed satellite's coordinates
                     addSatelliteMarkers(msg_lat_lon, satelliteSensedIcon, sensedSatellitesMarkerGroup, 'sensedSatelliteTooltip');
 
                     // Create a dictionary containing TLE-derived coordinates of all satellites that were not sensed 
-//                    var not_sensed_lat_lon_dict = [];
-var not_sensed_lat_lon_dict = {};
+                    var not_sensed_lat_lon_dict = {};
                     for (const sat_id of satellites_not_sensed_ids) {  // For each satellite that was not sensed
                         const tle = constructTleFromTlesDict(sat_id, tles_dict);
                         const coords_dict = tlejs.getLatLngObj(tle);
-
-//console.log( 'coords_dict = ' + coords_dict + ' , type of = ' + typeof coords_dict );                        
-//console.log( 'coords_dict[0] = ' + coords_dict[0] + ' , type of = ' + typeof coords_dict[0] );                        
-
-                        
-//not_sensed_lat_lon_dict[sat_id] = coords_dict;                        
-not_sensed_lat_lon_dict[sat_id] = [coords_dict['lat'],coords_dict['lng']];                        
-//                        not_sensed_lat_lon_dict.push( [ coords_dict['lat'], coords_dict['lng'] ] );
+                        not_sensed_lat_lon_dict[sat_id] = [coords_dict['lat'],coords_dict['lng']];                        
                     }
-console.log( 'Type of not_sensed_lat_lon_dict[1] = ' + typeof not_sensed_lat_lon_dict['1'] );
-//console.log('Not sensed dict= ' + not_sensed_lat_lon_dict.toString());
                     
                     // On 2D map, create a marker at the locaton of each satellite that was not sensed
                     addSatelliteMarkers(not_sensed_lat_lon_dict, satelliteNotSensedIcon, notSensedSatellitesMarkerGroup, 'notSensedSatelliteTooltip');  
