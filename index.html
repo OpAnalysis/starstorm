@@ -441,6 +441,7 @@
                     for (let k in tles_dict) {     // Iterate over each key in the tles_dict dictionary
                         if ( !msg_sat_visible_ids.includes(Number(k)) ) { satellites_not_sensed_ids.push(k); };
                     }
+console.log('Not sensed = ' + satellites_not_sensed_ids.toString());
                     
                     // Create the arrays of satellite elevations and azimuths required by sky plot
                     var look_angles_sat_ids = [];
