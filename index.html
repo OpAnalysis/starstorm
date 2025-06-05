@@ -501,6 +501,9 @@ console.log('Not sensed = ' + satellites_not_sensed_ids.toString());
                         const coords_dict = tlejs.getLatLngObj(tle);
                         not_sensed_lat_lon_dict.push( [ coords_dict['lat'], coords_dict['lng'] ] );
                     }
+
+console.log('Not sensed dict= ' + not_sensed_lat_lon_dict.toString());
+                    
                     // On 2D map, create a marker at the locaton of each satellite that was not sensed
                     addSatelliteMarkers(not_sensed_lat_lon_dict, satelliteNotSensedIcon, notSensedSatellitesMarkerGroup, 'notSensedSatelliteTooltip');  
                     
