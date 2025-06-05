@@ -513,7 +513,8 @@ console.log( 'coords_dict = ' + coords_dict + ' , type of = ' + typeof coords_di
 console.log( 'coords_dict[0] = ' + coords_dict[0] + ' , type of = ' + typeof coords_dict[0] );                        
 
                         
-not_sensed_lat_lon_dict[sat_id] = coords_dict;                        
+//not_sensed_lat_lon_dict[sat_id] = coords_dict;                        
+not_sensed_lat_lon_dict[sat_id] = [coords_dict['lat'],coords_dict['lng']];                        
 //                        not_sensed_lat_lon_dict.push( [ coords_dict['lat'], coords_dict['lng'] ] );
                     }
 console.log( 'Type of not_sensed_lat_lon_dict[1] = ' + typeof not_sensed_lat_lon_dict['1'] );
