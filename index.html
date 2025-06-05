@@ -491,24 +491,22 @@ console.log('Not sensed = ' + satellites_not_sensed_ids.toString());
                     notSensedSatellitesMarkerGroup.clearLayers();
                     groundTracksGroup.clearLayers();
 
-console.log('Msg_lat_lon = ' + msg_lat_lon.toString());
-var temp_var = msg_lat_lon['1'].toString();
-console.log("Msg_lat_lon[1] = " + temp_var);
-
-
+//console.log('Msg_lat_lon = ' + msg_lat_lon.toString());
                     
                     // On 2D map, create a marker at each sensed satellite's coordinates
                     addSatelliteMarkers(msg_lat_lon, satelliteSensedIcon, sensedSatellitesMarkerGroup, 'sensedSatelliteTooltip');
 
                     // Create a dictionary containing TLE-derived coordinates of all satellites that were not sensed 
-                    var not_sensed_lat_lon_dict = [];
+//                    var not_sensed_lat_lon_dict = [];
+var not_sensed_lat_lon_dict = {};
                     for (const sat_id of satellites_not_sensed_ids) {  // For each satellite that was not sensed
                         const tle = constructTleFromTlesDict(sat_id, tles_dict);
                         const coords_dict = tlejs.getLatLngObj(tle);
-                        not_sensed_lat_lon_dict.push( [ coords_dict['lat'], coords_dict['lng'] ] );
+not_sensed_lat_lon_dict[sat_id] = coords_dict;                        
+//                        not_sensed_lat_lon_dict.push( [ coords_dict['lat'], coords_dict['lng'] ] );
                     }
 
-console.log('Not sensed dict= ' + not_sensed_lat_lon_dict.toString());
+//console.log('Not sensed dict= ' + not_sensed_lat_lon_dict.toString());
                     
                     // On 2D map, create a marker at the locaton of each satellite that was not sensed
                     addSatelliteMarkers(not_sensed_lat_lon_dict, satelliteNotSensedIcon, notSensedSatellitesMarkerGroup, 'notSensedSatelliteTooltip');  
