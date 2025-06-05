@@ -160,6 +160,11 @@
                 if ( lat_lon_dict[key][1] < -180) { lat_lon_dict[key][1] = lat_lon_dict[key][1] + 360 };  // If satellite's longitude < -180 then shift it
                 var map_tooltip_lat = lat_lon_dict[key][0];
                 var map_tooltip_lon = lat_lon_dict[key][1];
+
+console.log('Key = ' + key);
+console.log('Map_tooltip_lat = ' + map_tooltip_lat);
+console.log('Type of Map_tooltip_lat = ' + typeof map_tooltip_lat);
+                
                 L.marker( lat_lon_dict[key], {   
                     icon: selectedIcon,  // Add sensed satellite icon
                     zIndexOffset: 999
