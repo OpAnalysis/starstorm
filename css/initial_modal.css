@@ -8,22 +8,22 @@ body{
     }
     .modal-content {
         background-color: black;
-        border:darkred 3px solid;
+        border: '#00ffff' 3px solid;
         color: lightgray;
         text-align: center;
-        font-family: "Bauhaus Modern", sans-serif;
+        font-family: 'Cloud';
         max-height: 2400px;
     }
     .modal-body {
         font-size: large;
     }
     .modal-footer {
-        color: darkred;
+        color: '#00ffff';
         font-weight: bold;
         font-size: large;
     }
     .modal-header {
-        color: darkred;
+        color: '#00ffff';
         font-weight: bold;
         font-size: xx-large;
     }
