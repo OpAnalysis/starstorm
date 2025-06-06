@@ -109,8 +109,7 @@
             </div>
         </div>
     </div>
-
-    
+   
     <!-- Define divs using Bootstrap 12-column grid-->
     <div class="satelliteCanvas">  <!-- Container for moving satellite -->
         <canvas id="satCanvas" class="satCanvas"></canvas>
@@ -133,6 +132,26 @@
 
     <script type="text/javascript">
 
+
+// Select the div you want to fade out
+var div = $("#initialModal");
+
+// Set the delay in milliseconds (e.g., 3000 for 3 seconds)
+var delay = 3000;
+
+// Set the fade duration in milliseconds (e.g., 500 for 0.5 seconds)
+var fadeDuration = 500;
+
+// Use setTimeout to delay the fadeOut
+setTimeout(function() {
+  div.fadeOut(fadeDuration);
+}, delay);
+
+
+
+
+
+        
         // Create dictionary of form satellite PRN : satellite name
         const satellite_names = {
             '1': 'NAVSTAR 83 / USA 440',
