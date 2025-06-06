@@ -538,7 +538,9 @@
                     
                     // Plot ground tracks for sensed satellites
                     for (const current_sat_id of msg_sat_visible_ids) {  // For each sensed satellite
-                    
+
+if (sat_id != '21') {
+                        
                         // Reconstruct current satellite's TLE from the TLEs dictionary
 console.log('ID = ' + current_sat_id);                        
                         var current_tle = constructTleFromTlesDict(current_sat_id, tles_dict);
@@ -556,7 +558,9 @@ console.log('TLE = ' + current_tle);
     
                     };
 
-                    
+
+};
+                        
                     
                     // Define sky plot
                     const skyPlotData = [{
