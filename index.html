@@ -542,9 +542,9 @@
 if (current_sat_id != '21') {
                         
                         // Reconstruct current satellite's TLE from the TLEs dictionary
-console.log('ID = ' + current_sat_id);                        
+//console.log('ID = ' + current_sat_id);                        
                         var current_tle = constructTleFromTlesDict(current_sat_id, tles_dict);
-console.log('TLE = ' + current_tle);
+//console.log('TLE = ' + current_tle);
                         // Get and plot ground track for current satellite
                         tlejs.getGroundTracks({  // Get ground track for 3 orbits of current satellite
                             tle: current_tle,    // Current satellite's TLE
