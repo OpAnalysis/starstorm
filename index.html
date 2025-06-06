@@ -539,7 +539,7 @@
                     // Plot ground tracks for sensed satellites
                     for (const current_sat_id of msg_sat_visible_ids) {  // For each sensed satellite
 
-if (sat_id != '21') {
+if (current_sat_id != '21') {
                         
                         // Reconstruct current satellite's TLE from the TLEs dictionary
 console.log('ID = ' + current_sat_id);                        
