@@ -24,6 +24,7 @@ body {
         border-radius: 20px;  */
         height: 10vh;  
         width: 100%;
+        align-items: center;
         padding: 1.7vh 0;
         line-height: 1;
         margin-bottom: 1vh;
