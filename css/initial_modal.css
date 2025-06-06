@@ -1,0 +1,31 @@
+body{
+
+    #initialModal {
+        background-color: rgba(0, 0, 0, 0.88);
+    }
+    .modal {
+        --bs-modal-border-radius: 30px;
+    }
+    .modal-content {
+        background-color: black;
+        border:darkred 3px solid;
+        color: lightgray;
+        text-align: center;
+        font-family: "Bauhaus Modern", sans-serif;
+        max-height: 2400px;
+    }
+    .modal-body {
+        font-size: large;
+    }
+    .modal-footer {
+        color: darkred;
+        font-weight: bold;
+        font-size: large;
+    }
+    .modal-header {
+        color: darkred;
+        font-weight: bold;
+        font-size: xx-large;
+    }
+
+}
