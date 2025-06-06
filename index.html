@@ -40,6 +40,9 @@
     <!-- Load MQTT.js client -->
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
 
+    <!-- Import CSS for initial modal -->
+    <link rel="stylesheet" href="./css/initial_modal.css">
+
     <!-- Import CSS for divs -->
     <link rel="stylesheet" href="./css/divs.css">
 
@@ -73,12 +76,41 @@
 
     </style>
 
+    <!-- DISPLAY INITIAL MODAL WHEN PAGE LOADS -->
+     <script>
+        $(document).ready(function(){
+            $("#initialModal").modal('show');
+        });
+    </script>
     
 </head>
 
     
 <body style="background-color:black">
 
+        <!-- Initial Modal -->
+        <div id="initialModal" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <!-- Initial modal content -->
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h1 class="modal-title w-100">STARSTORM</h1>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                    <div class="modal-body">
+                        <h5 class="text-center"><p><br>Fourfold Live Aggregation Tool<br><br>
+                            for<br><br>
+                            Fusing Imagery with Environmentally Layered Displays<br><br></p></h5>
+                    </div>
+                    <div class="modal-footer">
+                        <p>Pin the Flat Field (2024)<p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
     <!-- Define divs using Bootstrap 12-column grid-->
     <div class="satelliteCanvas">  <!-- Container for moving satellite -->
         <canvas id="satCanvas" class="satCanvas"></canvas>
