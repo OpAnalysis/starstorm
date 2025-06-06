@@ -8,7 +8,7 @@ body{
     }
     .modal-content {
         background-color: black;
-        border: '#00ffff' 3px solid;
+        border: #00ffff 3px solid;
         color: lightgray;
         text-align: center;
         font-family: 'Cloud';
@@ -18,12 +18,12 @@ body{
         font-size: large;
     }
     .modal-footer {
-        color: '#00ffff';
+        color: #00ffff;
         font-weight: bold;
         font-size: large;
     }
     .modal-header {
-        color: '#00ffff';
+        color: #00ffff;
         font-weight: bold;
         font-size: xx-large;
     }
