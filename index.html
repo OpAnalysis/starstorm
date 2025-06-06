@@ -79,12 +79,12 @@
 
     </style>
 
-    <!-- DISPLAY INITIAL MODAL WHEN PAGE LOADS  -->
+    <!-- DISPLAY INITIAL MODAL WHEN PAGE LOADS
      <script>
         $(document).ready(function(){
             $("#initialModal").modal('show');
         });
-    </script>
+    </script>  -->
     
 </head>
 
@@ -129,14 +129,13 @@
     <script type="text/javascript">
 
 
-        // Fade out the initial modal after a time delay
-        var divToFade = $("#initialModal");
-        var fadeDelay = 4000;  // Fade delay in ms
-        var fadeDuration = 500;  // Fade duration in ms
-        setTimeout(function() {
-          divToFade.fadeOut(fadeDuration);
-        }, fadeDelay);
-$("#initialModal").modal('hide');
+//        // Fade out the initial modal after a time delay
+//        var divToFade = $("#initialModal");
+//        var fadeDelay = 4000;  // Fade delay in ms
+//        var fadeDuration = 500;  // Fade duration in ms
+//        setTimeout(function() {
+//          divToFade.fadeOut(fadeDuration);
+//        }, fadeDelay);
 
         // Create dictionary of form satellite PRN : satellite name
         const satellite_names = {
