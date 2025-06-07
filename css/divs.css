@@ -106,6 +106,17 @@ body {
     font-family: "Cloud";
 }
 
+.leaflet-control-layers-expanded {  
+    padding: 4px 4px;
+    width: auto;
+    background: #00000080;
+    color: #ff80ff;
+    accent-color: #ff80ff;
+    font: 18px;
+    line-height: 30px;
+    border-radius: 15px;
+}
+
 .sensorTooltip {
     background-color: #262626;
     color: #ffffff;
