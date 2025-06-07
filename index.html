@@ -538,33 +538,28 @@
 
                     // Create list of satellites for which TLE data exists
                     tle_data_exists = Object.keys(tles_dict).toString();
-console.log('TLE data exists = ' + tle_data_exists);
                     
-                    // Plot ground tracks for sensed satellites
+                    // Plot ground tracks for sensed satellites for which TLE data exists
                     for (const current_sat_id of msg_sat_visible_ids) {  // For each sensed satellite
 
-//if (current_sat_id != '21') {
-if ( tle_data_exists.includes(current_sat_id) ) {
+                        if ( tle_data_exists.includes(current_sat_id) ) {   // If TLE data exists for current satellite
                         
-                        // Reconstruct current satellite's TLE from the TLEs dictionary
-//console.log('ID = ' + current_sat_id);                        
-                        var current_tle = constructTleFromTlesDict(current_sat_id, tles_dict);
-//console.log('TLE = ' + current_tle);
-                        // Get and plot ground track for current satellite
-                        tlejs.getGroundTracks({  // Get ground track for 3 orbits of current satellite
-                            tle: current_tle,    // Current satellite's TLE
-                            startTimeMS: Date.now() - 1.5 * 12 * 60 * 60 * 1000,  // Put current time in middle of 3 orbits (i.e., start first orbit about 1.5 orbital periods before current time) 
-                            stepMS: 30000,       // Time between calculations of position along orbit in ms
-                            isLngLatFormat: false,  // Output array lits coordinates as lng,lat if true and lat,lng if false
-                        }).then(function (threeOrbitsArr) {  // After promise has been fufilled, do the following
-                            var secondOrbitArr = threeOrbitsArr[1];  // Get ground track for second orbit from three orbits array
-                            L.polyline( secondOrbitArr, {color: '#ffffff80', weight: 1} ).addTo(groundTracksGroup);  // Plot current satellite's ground track
-                        });
+                            // Reconstruct current satellite's TLE from the TLEs dictionary
+                            var current_tle = constructTleFromTlesDict(current_sat_id, tles_dict);
+
+                            // Get and plot ground track for current satellite
+                            tlejs.getGroundTracks({  // Get ground track for 3 orbits of current satellite
+                                tle: current_tle,    // Current satellite's TLE
+                                startTimeMS: Date.now() - 1.5 * 12 * 60 * 60 * 1000,  // Put current time in middle of 3 orbits (i.e., start first orbit about 1.5 orbital periods before current time) 
+                                stepMS: 30000,       // Time between calculations of position along orbit in ms
+                                isLngLatFormat: false,  // Output array lits coordinates as lng,lat if true and lat,lng if false
+                            }).then(function (threeOrbitsArr) {  // After promise has been fufilled, do the following
+                                var secondOrbitArr = threeOrbitsArr[1];  // Get ground track for second orbit from three orbits array
+                                L.polyline( secondOrbitArr, {color: '#ffffff80', weight: 1} ).addTo(groundTracksGroup);  // Plot current satellite's ground track
+                            });
     
+                        };
                     };
-
-
-};
                         
                     
                     // Define sky plot
