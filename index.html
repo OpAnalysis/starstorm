@@ -535,6 +535,10 @@
                     
                     // On 2D map, create a marker at the locaton of each satellite that was not sensed
                     addSatelliteMarkers(not_sensed_lat_lon_dict, satelliteNotSensedIcon, notSensedSatellitesMarkerGroup, 'notSensedSatelliteTooltip');  
+
+                    // Create list of satellites for which TLE data exists
+                    tle_data_exists = Object.keys(tles_dict);
+console.log('TLE data exists = ' + tle_data_exists);
                     
                     // Plot ground tracks for sensed satellites
                     for (const current_sat_id of msg_sat_visible_ids) {  // For each sensed satellite
