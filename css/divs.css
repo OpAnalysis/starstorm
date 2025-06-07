@@ -153,6 +153,10 @@ body {
         border-right-color: '#404040';
     }
 
+.leaflet-control-attribution {
+    background-color: '#262626';
+}
+    
     .hovertext {
         background-color: #26262620;
         opacity: 0.8 !important; /* Opacity of tooltip background on look angles plot */
