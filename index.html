@@ -537,7 +537,7 @@
                     addSatelliteMarkers(not_sensed_lat_lon_dict, satelliteNotSensedIcon, notSensedSatellitesMarkerGroup, 'notSensedSatelliteTooltip');  
 
                     // Create list of satellites for which TLE data exists
-                    tle_data_exists = Object.keys(tles_dict);
+                    tle_data_exists = Object.keys(tles_dict).toString();
 console.log('TLE data exists = ' + tle_data_exists);
                     
                     // Plot ground tracks for sensed satellites
