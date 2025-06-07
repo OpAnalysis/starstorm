@@ -28,7 +28,7 @@
 }
 
 
-body {
+/* body { */
 
         overflow: hidden; 
 
@@ -187,4 +187,4 @@ body {
         opacity: 1 !important; /* Ensures text remains fully opaque */
     }
 
-}
+/*}  */
