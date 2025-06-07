@@ -144,27 +144,18 @@ body {
     background-color: #262626;
     color: #ff80ff;
     border: 2px solid '#404040';
-     font-family: Cloud;
+    font-family: Cloud;
     font-size: 14;
 }
 .leaflet-tooltip-left.satelliteTooltip:before {
-     border-left-color: '#404040';
+    border-left-color: '#404040';
 }
 .leaflet-tooltip-right.satelliteTooltip:before {
     border-right-color: '#404040';
 }
 
-
-
-
-.leaflet-control-attribution.style {
-    background: #262626;
-}
-
-
-
 .hovertext {
-     background-color: #26262620;
+    background-color: #26262620;
     opacity: 0.8 !important; /* Opacity of tooltip background on look angles plot */
 }
        
