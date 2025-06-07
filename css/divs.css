@@ -47,12 +47,6 @@ body {
     z-index: 1;
 }
 
-.centeredTitleDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .satelliteCanvas {
     position: absolute;
     top: 0%;
