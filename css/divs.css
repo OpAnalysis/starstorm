@@ -107,7 +107,7 @@ body {
 }
 
 
-.leaflet-control-attribution, .leaflet-control-layers { background: green; }
+.leaflet-control-attribution, .leaflet-control-layers { background-color: green; }
 
 
 
