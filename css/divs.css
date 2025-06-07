@@ -106,14 +106,6 @@ body {
     font-family: "Cloud";
 }
 
-
-.leaflet-control-attribution, .leaflet-control-layers { background-color: green; }
-
-
-
-
-
-
 .leaflet-control-layers-expanded {  
     padding: 4px 4px;
     width: auto;
