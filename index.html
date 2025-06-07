@@ -159,7 +159,7 @@
             '18': 'NAVSTAR 78 / USA 293',
             '19': 'NAVSTAR 54 / USA 177',
             '20': 'NAVSTAR 47 / USA 150',
-            '21': 'UNKNOWN',
+            '21': 'NAVSTAR 52 / USA 168',
             '22': 'NAVSTAR 48 / USA 151',
             '23': 'NAVSTAR 79 / USA 304',
             '24': 'NAVSTAR 67 / USA 239',
@@ -543,7 +543,8 @@ console.log('TLE data exists = ' + tle_data_exists);
                     // Plot ground tracks for sensed satellites
                     for (const current_sat_id of msg_sat_visible_ids) {  // For each sensed satellite
 
-if (current_sat_id != '21') {
+//if (current_sat_id != '21') {
+if ( tle_data_exists.includes(current_sat_id) ) {
                         
                         // Reconstruct current satellite's TLE from the TLEs dictionary
 //console.log('ID = ' + current_sat_id);                        
