@@ -66,7 +66,8 @@ body {
     .leftPanel {
         position: relative;
         color: white;
-        background-color: #262626;
+/*        background-color: #262626; */
+        background-color: #0026ff;
         border: 1px solid white;
         border-radius: 20px;
         height: 89vh;  
