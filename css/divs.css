@@ -32,137 +32,142 @@ body {
         overflow: hidden; 
 }
 
-    .topPanel {
-        position: relative;
-        color: #ff33ff;
-        font-family: Cloud;
-        font-size: 45px;
-        text-align: center;
-        vertical-align: center;
-        height: 10vh;  
-        width: 100%;
-        padding: 1.7vh 0;
-        line-height: 1;
-        margin-bottom: 1vh;
-        margin-left: 0%;
-        margin-right: 0%;
-        z-index: 1;
-    }
+.topPanel {
+    position: relative;
+    color: #ff33ff;
+    font-family: Cloud;
+    font-size: 45px;
+    text-align: center;
+    vertical-align: center;
+    height: 10vh;  
+    width: 100%;
+    padding: 1.7vh 0;
+    line-height: 1;
+    margin-bottom: 1vh;
+    margin-left: 0%;
+    margin-right: 0%;
+    z-index: 1;
+}
 
-    .satelliteCanvas {
-        position: absolute;
-        top: 0%;
-        left: 0%;
-        height: calc(1px * var(--satelliteDivOffsetHeight));
-        width: 100%;
-    }
+.satelliteCanvas {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: calc(1px * var(--satelliteDivOffsetHeight));
+    width: 100%;
+}
 
-    .satCanvas {
-        position: absolute;
-        top: 0%;
-        left: 0%;
-        z-index: -1;
-    }
+.satCanvas {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    z-index: -1;
+}
 
-    .satelliteDiv {
-        position: relative;
-        top: 0vh;
-        left: 0%;
-        height: 10vh;
-        width: 100%;
-        animation: translate 240s infinite linear;
-        z-index: 100;
-    }
+.satelliteDiv {
+     position: relative;
+    top: 0vh;
+    left: 0%;
+    height: 10vh;
+    width: 100%;
+    animation: translate 240s infinite linear;
+    z-index: 100;
+}
 
-    .satelliteImage {
-        position:absolute;
-        top: 0;
-        left: 0;
-        height: 36px;
-        width: 36px;
-        animation: upDown 30s alternate infinite ease-in-out;
-    }
+.satelliteImage {
+    position:absolute;
+    top: 0;
+    left: 0;
+    height: 36px;
+    width: 36px;
+    animation: upDown 30s alternate infinite ease-in-out;
+}
 
-    .skyPlot {
-        position: relative;
-        background-color: #262626;
-        border: 1px solid white;
-        border-radius: 20px;
-        height: 89vh;  
-        width: 35%;
-        padding: 0;
-        margin-left: 0.25%; 
-        margin-right: 0.25%;
-        font-family: "Cloud";
-    }
+.skyPlot {
+    position: relative;
+    background-color: #262626;
+    border: 1px solid white;
+    border-radius: 20px;
+    height: 89vh;  
+    width: 35%;
+    padding: 0;
+    margin-left: 0.25%; 
+    margin-right: 0.25%;
+    font-family: "Cloud";
+}
 
-    .map2D {
-        position: relative;
-        background-color: #262626;
-        border: 1px solid white;
-        border-radius: 20px;
-        height: 89vh;  
-        width: 50%;
-        margin-left: 0.25%;
-        margin-right: 0%;
-        font-family: "Cloud";
-    }
+.map2D {
+    position: relative;
+    background-color: #262626;
+    border: 1px solid white;
+    border-radius: 20px;
+    height: 89vh;  
+    width: 50%;
+    margin-left: 0.25%;
+    margin-right: 0%;
+    font-family: "Cloud";
+}
 
-    .sensorTooltip {
-        background-color: #262626;
-        color: #ffffff;
-        border: 2px solid #ff80ff;
-        font-family: Cloud;
-        font-size: 14;
-        text-align: left;
-    }
-    .leaflet-tooltip-left.sensorTooltip:before {
-        border-left-color: #ff80ff;
-    }
-    .leaflet-tooltip-right.sensorTooltip:before {
-        border-right-color: #ff80ff;
-    }
-    .leaflet-tooltip-top.sensorTooltip:before {
-        border-top-color: #ff80ff;
-    }
+.sensorTooltip {
+    background-color: #262626;
+    color: #ffffff;
+    border: 2px solid #ff80ff;
+    font-family: Cloud;
+    font-size: 14;
+    text-align: left;
+}
+.leaflet-tooltip-left.sensorTooltip:before {
+     border-left-color: #ff80ff;
+}
+.leaflet-tooltip-right.sensorTooltip:before {
+    border-right-color: #ff80ff;
+}
+.leaflet-tooltip-top.sensorTooltip:before {
+    border-top-color: #ff80ff;
+}
 
-    .sensedSatelliteTooltip {
-        background-color: #262626;
-        color: #ff80ff;
-        border: 2px solid cyan;
-        font-family: Cloud;
-        font-size: 14;
-    }
-    .leaflet-tooltip-left.satelliteTooltip:before {
-        border-left-color: cyan;
-    }
-    .leaflet-tooltip-right.satelliteTooltip:before {
-        border-right-color: cyan;
-    }
+.sensedSatelliteTooltip {
+    background-color: #262626;
+    color: #ff80ff;
+    border: 2px solid cyan;
+    font-family: Cloud;
+    font-size: 14;
+}
+.leaflet-tooltip-left.satelliteTooltip:before {
+     border-left-color: cyan;
+}
+.leaflet-tooltip-right.satelliteTooltip:before {
+    border-right-color: cyan;
+}
 
-    .notSensedSatelliteTooltip {
-        background-color: #262626;
-        color: #ff80ff;
-        border: 2px solid '#404040';
-        font-family: Cloud;
-        font-size: 14;
-    }
-    .leaflet-tooltip-left.satelliteTooltip:before {
-        border-left-color: '#404040';
-    }
-    .leaflet-tooltip-right.satelliteTooltip:before {
-        border-right-color: '#404040';
-    }
+.notSensedSatelliteTooltip {
+    background-color: #262626;
+    color: #ff80ff;
+    border: 2px solid '#404040';
+     font-family: Cloud;
+    font-size: 14;
+}
+.leaflet-tooltip-left.satelliteTooltip:before {
+     border-left-color: '#404040';
+}
+.leaflet-tooltip-right.satelliteTooltip:before {
+    border-right-color: '#404040';
+}
 
-.leaflet-control-attribution {
+
+
+
+.leaflet-control-attribution.style {
     background: #262626;
 }
-    
-    .hovertext {
-        background-color: #26262620;
-        opacity: 0.8 !important; /* Opacity of tooltip background on look angles plot */
-    }
+
+
+
+.hovertext {
+     background-color: #26262620;
+    opacity: 0.8 !important; /* Opacity of tooltip background on look angles plot */
+}
        
-    .hovertext > text {
-        opacity: 1 !important; /* Ensures text remains fully opaque */
-    }
+.hovertext > text {
+    opacity: 1 !important; /* Ensures text remains fully opaque */
+}
